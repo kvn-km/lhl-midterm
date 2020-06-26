@@ -39,6 +39,12 @@
 - price
 - description
 
+# Item Page
+
+- hero image
+- title, type, price
+- description
+
 ### USER STORIES
 
 ## BUYER
