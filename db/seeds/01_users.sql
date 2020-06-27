@@ -1,3 +1,18 @@
--- Users table seeds here (Example)
-INSERT INTO users (name) VALUES ('Alice');
-INSERT INTO users (name) VALUES ('Kira');
+DELETE FROM users;
+
+INSERT INTO users (username)
+VALUES ('jessicaSeo'),
+       ('samanthaGadet'),
+       ('kevinKim'),
+       ('davidWallace'),
+       ('janLevinson'),
+       ('angelaMartin'),
+       ('kellyKapoor'),
+       ('stanleyHudson'),
+       ('joshPorter'),
+       ('andyBernard'),
+       ('jimHalpert'),
+       ('pamBeasley'),
+       ('oscarMartinez'),
+       ('kevinMalone'),
+       ('michaelScott');
