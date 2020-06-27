@@ -1,12 +1,14 @@
-### MAIN PAGE
+# MID TERM APP
+
+#### Samantha Gadet, Jessica Seo, Kevin Kim
 
 ## OPTION 8 : BUY / SELL
 
-# FURNITURE
+### FURNITURE : Multi-Page App
 
-## Multi-Page App
+# Pages
 
-# Home page
+## Home page
 
 - featured items
 - menu bar (top of page)
@@ -14,12 +16,12 @@
 - search button
 - login button
 
-# Search page
+## Search page
 
 - type
 - price range
 
-# User's page
+## User's page
 
 - for all users
 - shows their favorites
@@ -28,24 +30,24 @@
 - inactive items
 - inbox button
 
-# Messages
+## Messages
 
 - chat
 
-# Post Items Page
+## Post Items Page
 
 - title
 - type
 - price
 - description
 
-# Item Page
+## Item Page
 
 - hero image
 - title, type, price
 - description
 
-### USER STORIES
+# USER STORIES
 
 ## BUYER
 
@@ -61,43 +63,74 @@
 - As a seller I want to be able to mark items as SOLD
 - As a seller I would like to be able to send and receive messages to potential buyers because we can negotiate
 
-### FEATURES
+# FEATURES
 
-# BUYERS
+## BUYERS
 
 - users can see featured items on a main feed
 - users can filter items by price,
 - users can favourite items to check up on them later
 - users can send messages to the user that is listing the item
 
-# SELLERS
+## SELLERS
 
 - post items, which can be seen by others
 - remove items from the site
 - mark items as SOLD!
 - send a message via app, email, or text back on negotiations in buying the said item
 
-## DATA
+# DATA
 
-# ERD
+## ERD
 
 !["comment"](https://)
 
-### STACK CHOICES
+### users
+
+id
+username
+
+### items
+
+id
+seller_id
+title
+price
+photo
+description
+type
+is_active
+is_sold
+
+### favourites
+
+id
+user_id
+item_id
+
+### messages
+
+id
+sender_id
+receiver_id
+message
+timestamp
+
+# STACK CHOICES
 
 ## Multi Page App
 
-# FRONT END
+### FRONT END
 
 - HTML
 - CSS, SASS
 - Bootstrap
 - JS/EJS
 
-# BACK END
+### BACK END
 
 - NODE JS
 - Express
 - PostgreSQL
 
-### TASKS
+# TASKS
