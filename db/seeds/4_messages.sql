@@ -19,10 +19,10 @@ VALUES (12, 11,
 
        (15, 13,
        'I. DECLARE. BANKRUPTCY!',
-       '2015-011-02 13:10:25'),
+       '2015-11-02 13:10:25'),
        (13, 15,
        'I just wanted you to know that you can''t just say the word ''bankruptcy'' and expect anything to happen.',
-       '2015-011-02 23:10:25'),
+       '2015-11-02 23:10:25'),
        (15, 13,
        'I didn''t say it, I declared it.',
-       '2015-011-02 24:10:00');
+       '2015-11-02 24:00:00');
