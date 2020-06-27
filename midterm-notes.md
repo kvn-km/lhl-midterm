@@ -134,3 +134,123 @@ timestamp
 - PostgreSQL
 
 # TASKS
+
+- create routes
+- test routes
+- create front end pages
+- connect databases to each route/CRUD
+- front end styling
+
+## nav bar (partial)
+
+### logged in versions
+
+- username, search, messages, post, logout - links
+
+### logged out versions
+
+- login, search (without search in search page)
+
+# home page
+
+- include navbar partial link
+
+### header
+
+- name, tagline
+
+### main body
+
+- featured items
+
+# search page
+
+- include navbar partial link
+
+### form, includes:
+
+- search bar
+- type, drop-down menu
+- price range, min and max price
+- search button
+
+# messages
+
+- include navbar partial link
+
+### form, at the bottom:
+
+- send button
+- messages
+
+# post items page
+
+- include navbar partial link
+
+### form, includes:
+
+- title input
+- type drop-down menu
+- price input
+- pic url
+- description textarea
+- featured checkbox
+- post button
+
+# user's page
+
+- include navbar partial link
+- items tables, includes:
+- favourites and my items
+- if NOT logged in: alert to login
+- if BUYER: un/favourite button
+- if SELLER: mark as sold/in-active/delete buttons
+
+# item page
+
+- include navbar partial link
+- item title
+- item pic
+- description
+- type
+- price
+- if NOT logged in: alert to login
+- if BUYER: buy/un/favourite button, and Message Seller button
+
+# REST ROUTES
+
+## Home page (homepage.js)
+
+- HTTP method: GET - URL pattern: / - USE: display the home page with a listing of the featured items;
+
+## Search page (search.js)
+
+- HTTP method: GET - URL pattern: /search/new - USE: display the search form and search bar;
+- HTTP method: POST - URL pattern: /search - USE: query the database;
+- HTTP method: GET - URL pattern: /search - USE: display filtered data;
+
+## Messages(messages.js)
+
+- HTTP method: GET - URL pattern: /messages - USE: display all the messages;
+- HTTP method: POST - URL pattern: /messages - USE: adding the message to the database;
+
+## Post new item(postItem.js)
+
+- HTTP method: GET - URL pattern: /posts/new - USE: display the post form
+- HTTP method: POST - URL pattern: /posts - USE: adding the item to the database and redirect to /item
+
+## User's page(users.js)
+
+- HTTP method: GET - URL pattern: /users/:id - USE: display the favorited items and the items on sale for the user;
+- HTTP method: POST - URL pattern: /users/:id/ - USE: redirect to item page redirect to /items/:id;
+
+- HTTP method: POST - URL pattern: /users/:id/delete - USE: delete the item from the database, redirect to /users/;
+- HTTP method: POST - URL pattern: /users/:id/sold - USE: alter the item in database with item_id - change the attribute is_sold TRUE, redirect to /users/;
+- HTTP method: POST - URL pattern: /users/:id/active - USE: alter the item in database with item_id - change the attribute is_active FALSE, redirect to /users/;
+- HTTP method: POST - URL pattern: /users/:id/favourite - USE: alter the item in favourites database with item_id and user_id, redirect to /users/;
+
+## Item page (item.js)
+
+- HTTP method: GET - URL pattern: /items/:id - USE: display the details of the item;
+- HTTP method: POST - URL pattern: /items/:id - USE: redirects to /messages;
+- HTTP method: POST - URL pattern: /items/:id/favourite- USE: alter the item in favourites database with item_id and user_id, redirect to /items/:id;
