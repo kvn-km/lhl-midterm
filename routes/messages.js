@@ -1,14 +1,14 @@
 "use strict";
 
-const express = require('express');
-const router = express.Router();
+// const express = require('express');
+// const router = express.Router();
 
-module.exports = (db) => {
+module.exports = (router, db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM messages;`)
       .then(data => {
         const msgs = data.rows;
-        res.render("messages", msgs);
+        res.render("messages");
       })
       .catch(err => {
         res
@@ -16,6 +16,33 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.post("/new", (req, res) => {
+    db.query(`
+        INSERT INTO messages (sender_id, receiver_id, message, timestamp)
+        VALUES (15, 13,
+        '${req.body.text}',
+        NOW())
+        RETURNING *;
+        `).then(data => {
+      const msgs = data.rows;
+      console.log(msgs);
+      res.redirect("/messages");
+    })
+      .catch(err => {
+        res
+          .status(400)
+          .json({ error: err.message });
+      });
+  });
+
+
+
+
+
+
+
+
 
   return router;
 };

@@ -1,7 +1,26 @@
 // helper functions
 
-function getTweets() {
-  return $.get("/tweets");
+
+function getMSGS() {
+  $(() => {
+    $.ajax({
+      method: "GET",
+      url: "/messages"
+    }).done((message) => {
+      return message;
+    }).catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+  // return $.ajax({
+  //   url, theMSG,
+  // });
+
+
+
 }
 
 function createTweet(tweet) {

@@ -1,40 +1,17 @@
 "use strict";
-const express = require('express');
-const router = express.Router();
 
-module.exports = (db) => {
-  $(document).ready(() => {
-    console.log("Yo. Doc's Ready!");
+$(document).ready(() => {
+  console.log("Yo. Doc's Ready!");
 
-    router.post("/messages/new", (req, res) => {
 
-      console.log(req.body);
-
-      db.query(`
-        INSERT INTO messages (sender_id, receiver_id, message, timestamp)
-        VALUES (15, 13,
-        'I didn''t say it, I declared it.',
-        '2015-11-02 24:00:00')
-        RETURNING *;
-        `).then(data => {
-        const msgs = data.rows;
-
-        //          res.send("hello");
-      })
-        .catch(err => {
-          res
-            .status(500)
-            .json({ error: err.message });
-        });
-    });
-
-    return router;
-  });
-};
+  function getMessages() {
+    return $.get("/tweets");
+  }
 
 
 
 
+});
   // // REF: 1. Make sure textarea is hidden at start
   // $(".new_tweet").toggleClass("visible");
 

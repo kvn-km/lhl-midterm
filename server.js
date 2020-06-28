@@ -41,8 +41,20 @@ const messagesRoutes = require("./routes/messages");
 // Note: Feel free to replace the example routes below with your own
 app.use("/users", usersRoutes(db));
 app.use("/widgets", widgetsRoutes(db));
-app.use("/messages", messagesRoutes(db));
 // Note: mount other resources here, using the same pattern above
+
+
+const messageRouter = express.Router();
+messagesRoutes(messageRouter, db);
+app.use("/messages", messageRouter);
+
+
+
+
+
+
+
+
 
 // Home page
 // Warning: avoid creating more routes in this file!
