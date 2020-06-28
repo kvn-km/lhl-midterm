@@ -9,12 +9,14 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
+const cookieSession = require("cookie-session");
 
 // PG database client/connection setup
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
+
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -23,6 +25,7 @@ app.use(morgan('dev'));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -30,6 +33,11 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ["roar-roar", "like-a-dungeon-dragon"]
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -43,12 +51,8 @@ app.use("/users", usersRoutes(db));
 app.use("/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
-
-const messageRouter = express.Router();
-messagesRoutes(messageRouter, db);
-app.use("/messages", messageRouter);
-
-
+const messagesHelpers = require("./public/scripts/messages-helperFunctions.js")(db);
+app.use("/messages", messagesRoutes(messagesHelpers));
 
 
 

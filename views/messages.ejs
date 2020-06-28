@@ -16,7 +16,7 @@
   <!-- scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-  <script type="text/javascript" src="/scripts/messages-client.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/messages-client.js"></script> -->
   <script type="text/javascript" src="/scripts/messages-helperFunctions.js"></script>
 
   <title>Messages</title>
@@ -30,8 +30,8 @@
       <h1>hello world!</h1>
     </section>
     <section id="form_area">
-      <form action="/messages/new" method="POST">
-        <textarea name="text" id="input_text" placeholder="Your message here."></textarea>
+      <form action="/messages" method="POST">
+        <textarea name="message" id="input_text" placeholder="Your message here."></textarea>
         <span class="send_msg">
           <button type="submit">send</button>
         </span>

@@ -1,14 +1,13 @@
 "use strict";
 
-// const express = require('express');
-// const router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-module.exports = (router, db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM messages;`)
-      .then(data => {
-        const msgs = data.rows;
-        res.render("messages");
+module.exports = ({ getMessages, sendMessage }) => {
+  router.get("/json/", (req, res) => {
+    getMessages()
+      .then(messages => {
+        res.json({ messages });
       })
       .catch(err => {
         res
@@ -17,22 +16,29 @@ module.exports = (router, db) => {
       });
   });
 
-  router.post("/new", (req, res) => {
-    db.query(`
-        INSERT INTO messages (sender_id, receiver_id, message, timestamp)
-        VALUES (15, 13,
-        '${req.body.text}',
-        NOW())
-        RETURNING *;
-        `).then(data => {
-      const msgs = data.rows;
-      console.log(msgs);
-      res.redirect("/messages");
-    })
+  router.get("/", (req, res) => {
+    getMessages()
+      .then(messages => {
+        let templateVars = { userID: req.session.userID, "messages": messages };
+        res.render("messages", templateVars);
+      })
       .catch(err => {
         res
-          .status(400)
+          .status(500)
           .json({ error: err.message });
+      });
+  });
+
+  router.post("/", (req, res) => {
+    console.log("req.body:", req.body);
+    const { sender_id, receiver_id, message } = req.body;
+    sendMessage(sender_id, receiver_id, message)
+      .then(message => {
+        console.log("post message:", message);
+        res.json(message);
+        // res.redirect("/messages");
+      }).catch(err => {
+        console.log(err);
       });
   });
 

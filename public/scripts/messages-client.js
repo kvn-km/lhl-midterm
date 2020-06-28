@@ -2,15 +2,6 @@
 
 $(document).ready(() => {
   console.log("Yo. Doc's Ready!");
-
-
-  function getMessages() {
-    return $.get("/tweets");
-  }
-
-
-
-
 });
   // // REF: 1. Make sure textarea is hidden at start
   // $(".new_tweet").toggleClass("visible");
