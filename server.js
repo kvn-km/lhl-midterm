@@ -45,38 +45,14 @@ app.use(
   })
 );
 
-// Separated Routes for each Resource
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
+});
 
+// Separated Routes for each Resource
 const homeRoutes = require("./routes/homepage");
 const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 app.use("/login", loginRoutes(db));
 app.use("/", homeRoutes(db));
-
-// app.get("/login", (req, res) => {
-//   res.render("login");
-// });
-
-const getUserByUsername = (username) => {
-  return db
-    .query(`SELECT * FROM users WHERE username = $1;`, [username])
-    .then((data) => {
-      return data.rows[0];
-    })
-    .catch((err) => console.error("query error", err.stack));
-};
-//console.log(getUserByUsername("samanthaGadet"));
-
-app.post("/login", (req, res) => {
-  const username = req.body.username;
-  const user = getUserByUsername(username);
-  req.session["user_id"] = user.id;
-  req.session["username"] = user.username;
-  console.log(req.session);
-  res.redirect(`/login`);
-});
-
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
-});
