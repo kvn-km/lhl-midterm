@@ -35,7 +35,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const widgetsRoutes = require("./routes/widgets");
 const usersRoutes = require("./routes/users");
-const postNewItems = require("./routes/postItem");
+const postNewItems = require("./routes/post_items");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
