@@ -21,6 +21,15 @@ const addNewItem = (item) => {
   return db.query(query).then((res) => res.rows);
 
 }
+const typeList = (db) => {
+  const type = {};
+  for(let item in db ) {
+    if (!type[item.type]) {
+      type[item.type]
+    }
+  }
+  return type;
+}
 
 
 
@@ -33,7 +42,7 @@ module.exports = (db) => {
     // const userId = req.session.userId;
     addNewItem({...req.body, seller_id: 1})
       .then(item => {
-        res.redirect("/items");
+        res.json(item);
       })
       .catch(e => {
         console.error(e);
