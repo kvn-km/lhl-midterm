@@ -1,23 +1,22 @@
 "use strict";
 
 const express = require('express');
+const app = express();
 const router = express.Router();
+const path = require("path");
 
-module.exports = ({ getMessages, sendMessage }) => {
+module.exports = (db) => {
   router.get("/json/", (req, res) => {
-    getMessages()
-      .then(messages => {
+    db.query(`SELECT * FROM users;`)
+      .then(data => {
+        const messages = data.rows;
         res.json({ messages });
       })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+      .catch(error => { console.log("JSON GET Fail", error); });
   });
 
   router.get("/", (req, res) => {
-    res.render("messages");
+    res.sendFile(path.join(__dirname + "/messages.html"));
   });
 
   // router.post("/", (req, res) => {
@@ -32,14 +31,6 @@ module.exports = ({ getMessages, sendMessage }) => {
   //       console.log(err);
   //     });
   // });
-
-
-
-
-
-
-
-
 
   return router;
 };

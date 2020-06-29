@@ -43,8 +43,10 @@ app.use(cookieSession({
 // Note: Feel free to replace the example routes below with your own
 const widgetsRoutes = require("./routes/widgets");
 const usersRoutes = require("./routes/users");
-// const messagesHelpers = require("./public/scripts/messages-helperFunctions.js");
+
 const messagesRoutes = require("./routes/messages");
+const messagesHelper = require("./public/scripts/messages-helperFunctions.js");
+const messagesRoute = require("./routes/messages-Route")(messagesHelper);
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -53,6 +55,7 @@ app.use("/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 app.use("/messages", messagesRoutes(db));
+app.use("/messagesRoute", messagesRoute);
 
 
 

@@ -3,12 +3,6 @@
 $(document).ready(() => {
   console.log("Yo. Doc's Ready!");
 
-
-  // bring me back to the top of the page when clicking the logo
-  // $(".logo").click(function() {
-  //   $(window).scrollTop(0);
-  // });
-
   // $("form").submit(function() {
   //   event.preventDefault();
   //   let tweetTextSample = $("#tweet_text").val();
@@ -34,16 +28,14 @@ $(document).ready(() => {
   //   }
   // });
 
-
-  getMessages()
-    .then(messages => {
-      { renderConvo(messages); }
-    })
-    .catch(error => { console.log("Initial GET Fail", error); });
-
   // // REF: 2. if error was thrown, remove it when the textarea is being adjusted
   // $("[id=tweet_text]").on("input", function() {
   //   $("[class=errorMSG]").animate({ "margin-left": "15rem", "opacity": "0" });
   // });
 
+
+
+  getMessages()
+    .then(messages => { renderConvo(messages); })
+    .catch(error => { console.log("Initial GET Fail", error); });
 });

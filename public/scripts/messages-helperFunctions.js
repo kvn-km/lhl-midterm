@@ -1,9 +1,7 @@
 // helper functions
 
-// module.exports = (db) => {
-
-const getMessages = (db) => {
-  return $.get("/messages/json");
+const getMessages = () => {
+  return $.get("/messagesRoute");
 };
 
 const sendMessage = (sender_id, receiver_id, message) => {
@@ -33,22 +31,12 @@ function createMessage(message) {
   $msg_message.text(message["message"]);
   //build the elements
   $msg_container // <article class="a_msg">
-    .append($msg_msg); // <p>
-
+    .append($msg_message); // <p>
   return $msg_container;
 }
 
-const renderConvo = () => {
-  for (const message of getMessages) {
-    $("#all_messages").append(createMessage(message));
-  };
+const renderConvo = (allMessages) => {
+  for (const msg of allMessages) {
+    $("#all_messages").append(createMessage(msg));
+  }
 };
-
-// return {
-//   getMessages,
-//   sendMessage,
-//   createMessage,
-//   renderConvo
-// };
-// };
-//
