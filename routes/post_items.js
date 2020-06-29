@@ -23,9 +23,11 @@ const addNewItem = (item) => {
 }
 const typeList = (db) => {
   const type = {};
-  for(let item in db ) {
+  for(let item of db ) {
     if (!type[item.type]) {
-      type[item.type]
+      type[item.type] = 1
+    } else {
+      type[item.type]++;
     }
   }
   return type;
@@ -35,11 +37,24 @@ const typeList = (db) => {
 
 module.exports = (db) => {
   router.get("/new", (req, res) => {
-    res.render("post_items")
+
+    db.query(`SELECT * FROM items;`)
+      .then(data => {
+        const items = data.rows;
+        const types = typeList(items);
+
+        const templateVar = { types: types }
+        res.render("post_items", templateVar)
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e)
+      });
   });
 
   router.post("/new", (req, res) => {
     // const userId = req.session.userId;
+
     addNewItem({...req.body, seller_id: 1})
       .then(item => {
         res.json(item);
