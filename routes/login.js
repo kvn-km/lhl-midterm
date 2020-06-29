@@ -13,7 +13,10 @@ module.exports = (db) => {
   };
   //Renders the login form
   router.get("/", (req, res) => {
-    res.render("login");
+    const username = req.session["username"];
+    console.log("username:", username);
+    let templateVars = { user: username };
+    res.render("login", templateVars);
   });
   //Sets the cookie when login in
   router.post("/", (req, res) => {

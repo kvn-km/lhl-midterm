@@ -52,7 +52,9 @@ app.listen(PORT, () => {
 // Separated Routes for each Resource
 const homeRoutes = require("./routes/homepage");
 const loginRoutes = require("./routes/login");
+const logoutRoutes = require("./routes/logout");
 
 // Mount all resource routes
 app.use("/login", loginRoutes(db));
+app.use("/logout", logoutRoutes(db));
 app.use("/", homeRoutes(db));

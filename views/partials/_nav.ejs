@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark">
-  <a class="navbar-brand" href="#">My flea Market.ca
-  <img src="" width="30" height="30" alt=""> 
+  <a class="navbar-brand" href="/">
+  <img src="/images/Logo.png" width="40" height="40" alt=""> My flea Market.ca
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
     <div>
       <form class="form-inline my-2 my-lg-0" action="/logout" method="POST">
         <div class="mr-sm-2">
-          Logged In As: <%= user.username %>
+          Logged In As: <%= user %>
         </div>
         <button
           style ="margin-left: 1em;"
@@ -36,24 +36,25 @@
           Logout
         </button>
       </form>
-     
     </div>
-    
+    <% } else { %>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
         <a class="nav-link" href="/search/new">Search</a>
         </li>
+        <li class="nav-item">
+          <form class="form-inline my-2 my-lg-0" action="/login" method="GET">
+            <button
+              style ="margin-left: 1em;"
+              type="submit"
+              class="btn btn-outline-dark my-2 my-sm-0"
+            >
+              Login
+            </button>
+          </form>
+        </li>
       </ul>
-    <div>
-      <a
-      class="mr-sm-2"
-      href="/login"
-      style="color: black;"
-      onMouseOver="this.style.color='#DCDCDC'"
-      onMouseOut="this.style.color='#000'"
-      >Log In</a
-    >
-    </div>
+    <% } %>
     
   </div>
 </nav>

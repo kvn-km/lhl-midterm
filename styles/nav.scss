@@ -4,4 +4,7 @@ nav {
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
   z-index: 1; /*Allow the content of the navbar to be visible at all times when scrolling on the page*/
+  .navbar-brand img {
+    margin-right: 1em;
+  }
 }
