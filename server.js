@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require("morgan");
+let cookieSession = require("cookie-session");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -34,34 +35,46 @@ app.use(
 );
 app.use(express.static("public"));
 
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [
+      "f080ac7b-b838-4c5f-a1f4-b0a9fee10130",
+      "c3fb18be-448b-4f6e-a377-49373e9b7e1a",
+    ],
+  })
+);
+
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
-const widgetsRoutes = require("./routes/widgets");
-// usersRoutes = require("./routes/users");
+
+const homeRoutes = require("./routes/homepage");
+const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
-// Note: Feel free to replace the example routes below with your own
-//app.use("/users", usersRoutes(db));
-app.use("/widgets", widgetsRoutes(db));
+app.use("/login", loginRoutes(db));
+app.use("/", homeRoutes(db));
 
-// Note: mount other resources here, using the same pattern above
+// app.get("/login", (req, res) => {
+//   res.render("login");
+// });
 
-// home page
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  db.query(
-    `SELECT photo, title FROM items
-    WHERE is_featured = TRUE;`
-  )
+const getUserByUsername = (username) => {
+  return db
+    .query(`SELECT * FROM users WHERE username = $1;`, [username])
     .then((data) => {
-      const featuredItems = data.rows;
-      //res.json({ users });
-      res.render("index", { featuredItems });
+      return data.rows[0];
     })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+    .catch((err) => console.error("query error", err.stack));
+};
+//console.log(getUserByUsername("samanthaGadet"));
+
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const user = getUserByUsername(username);
+  req.session["user_id"] = user.id;
+  req.session["username"] = user.username;
+  console.log(req.session);
+  res.redirect(`/login`);
 });
 
 app.listen(PORT, () => {
