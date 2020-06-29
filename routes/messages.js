@@ -17,30 +17,21 @@ module.exports = ({ getMessages, sendMessage }) => {
   });
 
   router.get("/", (req, res) => {
-    getMessages()
-      .then(messages => {
-        let templateVars = { userID: req.session.userID, "messages": messages };
-        res.render("messages", templateVars);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    res.render("messages");
   });
 
-  router.post("/", (req, res) => {
-    console.log("req.body:", req.body);
-    const { sender_id, receiver_id, message } = req.body;
-    sendMessage(sender_id, receiver_id, message)
-      .then(message => {
-        console.log("post message:", message);
-        res.json(message);
-        // res.redirect("/messages");
-      }).catch(err => {
-        console.log(err);
-      });
-  });
+  // router.post("/", (req, res) => {
+  //   console.log("req.body:", req.body);
+  //   const { sender_id, receiver_id, message } = req.body;
+  //   sendMessage(sender_id, receiver_id, message)
+  //     .then(message => {
+  //       console.log("post message:", message);
+  //       res.json(message);
+  //       // res.redirect("/messages");
+  //     }).catch(err => {
+  //       console.log(err);
+  //     });
+  // });
 
 
 
@@ -52,42 +43,3 @@ module.exports = ({ getMessages, sendMessage }) => {
 
   return router;
 };
-
-
-
-
-
-// "use strict";
-
-// // Basic express setup:
-
-// const PORT = 8080;
-// const express = require("express");
-// const bodyParser = require("body-parser");
-// const app = express();
-
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static("public"));
-
-// // The in-memory database of tweets. It's a basic object with an array in it.
-// const db = require("./lib/in-memory-db");
-
-// // The `data-helpers` module provides an interface to the database of tweets.
-// // This simple interface layer has a big benefit: we could switch out the
-// // actual database it uses and see little to no changes elsewhere in the code
-// // (hint hint).
-// //
-// // Because it exports a function that expects the `db` as a parameter, we can
-// // require it and pass the `db` parameter immediately:
-// const DataHelpers = require("./lib/data-helpers.js")(db);
-
-// // The `tweets-routes` module works similarly: we pass it the `DataHelpers` object
-// // so it can define routes that use it to interact with the data layer.
-// const tweetsRoutes = require("./routes/tweets")(DataHelpers);
-
-// // Mount the tweets routes at the "/tweets" path prefix:
-// app.use("/tweets", tweetsRoutes);
-
-// app.listen(PORT, () => {
-//   console.log("Example app listening on port " + PORT);
-// });

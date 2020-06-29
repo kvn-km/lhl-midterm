@@ -2,26 +2,11 @@
 
 $(document).ready(() => {
   console.log("Yo. Doc's Ready!");
-});
-  // // REF: 1. Make sure textarea is hidden at start
-  // $(".new_tweet").toggleClass("visible");
 
-  // // bring me back to the top of the page when clicking the logo
+
+  // bring me back to the top of the page when clicking the logo
   // $(".logo").click(function() {
   //   $(window).scrollTop(0);
-  // });
-
-  // // REF: 1. Compose tweet un/hide feature
-  // $(".tagline").click(function() {
-  //   if ($(".new_tweet").hasClass("visible")) {
-  //     $(".new_tweet").animate({ "margin-top": "-9rem", "opacity": "0" });
-  //     $(".new_tweet").toggleClass("visible");
-  //     $("#tweet_text").blur();
-  //   } else {
-  //     $(".new_tweet").animate({ "margin-top": "0rem", "opacity": "100" });
-  //     $(".new_tweet").toggleClass("visible");
-  //     $("#tweet_text").focus();
-  //   }
   // });
 
   // $("form").submit(function() {
@@ -49,13 +34,16 @@ $(document).ready(() => {
   //   }
   // });
 
-  // // page load get tweets
-  // getTweets()
-  //   .then(response => { renderTweets(response, "#all_tweets"); })
-  //   .catch(error => { console.log("Initial GET Fail", error); });
+
+  getMessages()
+    .then(messages => {
+      { renderConvo(messages); }
+    })
+    .catch(error => { console.log("Initial GET Fail", error); });
 
   // // REF: 2. if error was thrown, remove it when the textarea is being adjusted
   // $("[id=tweet_text]").on("input", function() {
   //   $("[class=errorMSG]").animate({ "margin-left": "15rem", "opacity": "0" });
   // });
 
+});
