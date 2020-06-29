@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/search.css" type="text/css" />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <title>Best Furniture Shop</title>
+  </head>
+  <body>
+    <!-- <partial header> -->
+
+    <form method='POST' action='/search/new'>
+      <div class="container-fluid">
+        <h2>Search Items</h2>
+        <div class="form-group form-row">
+          <div class="col">
+            <input class="form-control" type="text" placeholder="Search" name="Search">
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </div>
+        </div>
+        <br>
+        <div class="form-group ">
+          <lable for="type">Type</lable>
+          <select class="form-control" name="type">
+            <option selected>Choose Type</option>
+            <% for(let type in types) { %>
+            <option><%=type %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="form-group form-row">
+          <div class="col">
+          <lable for="minimum-price">Minimum Price</lable>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="number" class="form-control" name="minimum_price">
+          </div>
+          </div>
+          <div class="col">
+          <lable for="minimum-price">Maximum Price</lable>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="number" class="form-control" name="maximum_price">
+          </div>
+          </div>
+        </div>
+        <div class="form-group ">
+          <button type="submit" class="btn btn-success" id="post">search</button>
+          </div>
+      </div>
+    </form>
+  </body>
+</html>
