@@ -21,13 +21,15 @@ h2 {
 }
 
 
+
+
 /* media query*/
 
 @media only screen and (min-width: 1024px) {
-  .container-fluid {
-    display: flex;
-    flex-flow: column;
+  form {
     width: 100%;
+    padding-left: 5em;
+    padding-right: 20em;
   }
 }
 
