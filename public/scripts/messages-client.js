@@ -33,38 +33,37 @@ $(document).ready(() => {
   //   $("[class=errorMSG]").animate({ "margin-left": "15rem", "opacity": "0" });
   // });
 
+  $.ajax({
+    type: "POST",
+    cache: false,
+    url: '/',
+    data: { 'name='+name, 'surname='+surname, 'email='+email, 'pass='+pass },
+    success: function(data) {
+      alert('data has been stored to database');
+    }
+  });
 
-  // router.post("/", (req, res) => {
-  //   const { sender_id, receiver_id, message } = req.body;
-  //   sendMessage(sender_id, receiver_id, message)
-  //     .then(message => {
-  //       console.log("post message:", message);
-  //       res.json(message);
-  //       // res.redirect("/messages");
-  //     }).catch(err => {
-  //       console.log(err);
-  //     });
-  // });
 
   $("form").submit(function() {
     event.preventDefault();
-    let theMessageSample = $("#input_text").val();
-    // error msg stuff goes here
-    //   if (tweetTextSample.length > 140 || tweetTextSample.length === 0) { // REF: 2. Throw error if tweet is too long.
-    //     $("[class=errorMSG]").animate({ "margin-left": "0rem", "opacity": "100" });
-    //   } else if (tweetTextSample.length > 0 && tweetTextSample.length <= 140) {
-    let theMessage = $(this).serialize();
-    $.post("/messagesRoute", theMessage)
-      .then(
-        function() {
-          getMessages()
-            .then((messages) => {
-              $("#input_text").val("");
-              $("#all_messages").empty();
-              renderConvo(messages, "#all_messages");
-            });
-        })
-      .catch(error => { console.log("Initial GET Fail", error); });
+    let theMessageSample = $("#the_message").val();
+    if (theMessageSample.length > 0) {
+      let theMessage = $(this).serialize();
+      // sendMessage("/messagesRoute", theMessage)
+      sendMessage(theMessage)
+        .then(
+          function() {
+            getMessages()
+              .then((messages) => {
+                console.log("hello thereeee");
+
+                $("#the_message").val("");
+                $("#all_messages").empty();
+                renderConvo(messages, "#all_messages");
+              });
+          })
+        .catch(error => { console.log("Initial GET Fail", error); });
+    }
   });
 
 

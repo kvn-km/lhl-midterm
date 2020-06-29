@@ -1,20 +1,34 @@
 // helper functions
 
+
 const getMessages = () => {
   return $.get("/messagesRoute");
 };
 
-const sendMessage = (sender_id, receiver_id, message) => {
-  const sender = sender_id;
-  const receiver = receiver_id;
+// const sendMessage = (sender_id, receiver_id, message) => {
+const sendMessage = (message) => {
+  // const { sender_id, receiver_id, message } = req.body;
+  const { Pool } = require('pg');
+  const dbParams = require('../../lib/db.js');
+  const db = new Pool(dbParams);
+  db.connect();
+  const sender = 3;
+  const receiver = 1;
   const theMSG = message;
   const sendQuery = {
     text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp) VALUES ($1, $2, $3, NOW()) RETURNING *;`,
     values: [sender, receiver, theMSG]
   };
-  return db
-    .query(sendQuery)
-    .then(returning => returning.rows);
+
+  db.query(`SELECT username FROM users WHERE id = ${sender};`)
+    .then(data => {
+      console.log(data.rows[0]["username"]); // kevinKim
+    });
+
+  db.query(sendQuery)
+    .then(returning => { return returning; });
+
+
 };
 
 function createMessage(message) {
