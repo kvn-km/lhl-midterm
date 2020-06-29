@@ -17,11 +17,9 @@
         <lable for="type">Type</lable>
         <select class="form-control" name="type">
           <option selected>Choose Type</option>
-          <option>Chairs</option>
-          <option>Tables</option>
-          <option>Beds</option>
-          <option>Desks</option>
-          <option>Storage</option>
+          <% for(let type in types) { %>
+          <option><%=type %></option>
+          <% } %>
         </select>
       </div>
       <div class="form-group ">
@@ -42,10 +40,7 @@
         <textarea rows="10" class="form-control" name="description" placeholder="Product description here"></textarea>
       </div>
       <div class="form-group ">
-        <!-- <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="featured" name="featured" value="true">
-          <label class="custom-control-label" for="featured">Check this to add this item to featured items list</label>
-        </div> -->
+
         <lable for="featured">Add this item to Featured Items</lable>
         <div class="custom-control custom-radio custom-control-inline">
           <input type="radio" id="featuredTrue" name="featured" class="custom-control-input" value="true">
@@ -61,7 +56,5 @@
       <button type="submit" class="btn btn-success" id="post">Post</button>
       </div>
     </div>
-
-    </form>
   </body>
 </html>
