@@ -6,7 +6,7 @@ const path = require("path");
 
 module.exports = (db) => {
   router.get("/json/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT * FROM messages;`)
       .then(data => {
         const messages = data.rows;
         res.json({ messages });

@@ -47,7 +47,7 @@ const usersRoutes = require("./routes/users");
 const messagesRoutes = require("./routes/messages");
 const messagesHelper = require("./public/scripts/messages-helperFunctions.js");
 const messagesRoute = require("./routes/messages-Route")(messagesHelper);
-const loginRoutes = require("./routes/login");
+// const loginRoutes = require("./routes/login");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -57,7 +57,7 @@ app.use("/widgets", widgetsRoutes(db));
 
 app.use("/messages", messagesRoutes(db));
 app.use("/messagesRoute", messagesRoute);
-app.use("/login", loginRoutes(db));
+// app.use("/login", loginRoutes(db));
 
 
 
