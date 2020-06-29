@@ -14,7 +14,7 @@ module.exports = () => {
     return db.query(`SELECT * FROM messages;`)
       .then(data => {
         const messages = data.rows;
-        res.json(messages);
+        res.send(messages);
       })
       .catch(error => { console.log("JSON GET Fail", error); });
   });

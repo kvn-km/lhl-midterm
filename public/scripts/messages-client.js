@@ -34,17 +34,17 @@ $(document).ready(() => {
   // });
 
 
-  router.post("/", (req, res) => {
-    const { sender_id, receiver_id, message } = req.body;
-    sendMessage(sender_id, receiver_id, message)
-      .then(message => {
-        console.log("post message:", message);
-        res.json(message);
-        // res.redirect("/messages");
-      }).catch(err => {
-        console.log(err);
-      });
-  });
+  // router.post("/", (req, res) => {
+  //   const { sender_id, receiver_id, message } = req.body;
+  //   sendMessage(sender_id, receiver_id, message)
+  //     .then(message => {
+  //       console.log("post message:", message);
+  //       res.json(message);
+  //       // res.redirect("/messages");
+  //     }).catch(err => {
+  //       console.log(err);
+  //     });
+  // });
 
   $("form").submit(function() {
     event.preventDefault();
