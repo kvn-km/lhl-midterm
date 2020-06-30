@@ -31,9 +31,4 @@ const renderConvo = (message) => {
     $("#all_messages").prepend(createMessage(msg));
   }
 
-  const updateScrollView = function() {
-    let element = document.getElementById("all_messages");
-    element.scrollTop = element.scrollHeight;
-  };
-
 };
