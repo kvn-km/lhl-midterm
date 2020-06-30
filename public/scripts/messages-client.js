@@ -8,14 +8,14 @@ $(document).ready(() => {
     // let theMessage = $("#message").val();
     let theMessageSerialized = $(this).serialize();
     sendAMessage(theMessageSerialized)
-      .then(
+      .then(function() {
         getMessages()
-          .then((messages) => {
+          .then(function(messages) {
             $("#message").val("");
             $("#all_messages").empty();
-            renderConvo(messages, "#all_messages");
-          })
-      ).catch(error => { console.log("POST Message Fail", error); });
+            renderConvo(messages);
+          });
+      }).catch(error => { console.log("POST Message Fail", error); });
   });
 
   getMessages()

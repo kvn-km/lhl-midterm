@@ -24,18 +24,15 @@ module.exports = () => {
   router.post("/", (req, res) => {
     console.log("the cookies are:", req.session);
     console.log("the message is:", req.body.message);
-    const theMSG = req.body.message;
-    const sender = req.session.userID;
-    const receiver = 1; // needs to be updated
+    const receiver = 1; // needs to be updated, for testing
     const sendQuery = {
       text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp)
       VALUES ($1, $2, $3, NOW()) RETURNING *;`,
-      values: [sender, receiver, theMSG]
+      values: [req.session.userID, receiver, req.body.message]
     };
     db.query(sendQuery)
       .then(returning => {
-        const theReturn = returning.rows;
-        res.send(theReturn);
+        res.send(returning.rows);
       });
   });
 
