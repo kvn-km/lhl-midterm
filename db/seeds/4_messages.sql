@@ -2,7 +2,7 @@ DELETE FROM messages;
 
 INSERT INTO messages (sender_id, receiver_id, message, timestamp)
 VALUES (12, 11,
-       'You came to my desk and said, ''This may sound weird, and there''s no reason for me to know this, but that mixed berry yogurt you''re about to eat has expired.',
+       'You came to my desk and said, ''This may sound weird, and there''s no reason for me to know this, but that mixed berry yogurt you''re about to eat has expired.''',
        '2016-06-22 19:10:25'),
        (11, 12,
        'That was the moment that you liked me?',
