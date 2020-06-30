@@ -1,3 +1,5 @@
+// main json and initial get route for messages
+
 "use strict";
 
 const express = require('express');

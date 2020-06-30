@@ -1,3 +1,5 @@
+// async get and post routes for messages
+
 "use strict";
 
 const express = require('express');
@@ -26,7 +28,8 @@ module.exports = () => {
     const sender = req.session.userID;
     const receiver = 1; // needs to be updated
     const sendQuery = {
-      text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp) VALUES ($1, $2, $3, NOW()) RETURNING *;`,
+      text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp)
+      VALUES ($1, $2, $3, NOW()) RETURNING *;`,
       values: [sender, receiver, theMSG]
     };
     db.query(sendQuery)
@@ -35,7 +38,6 @@ module.exports = () => {
         res.send(theReturn);
       });
   });
-
 
   return router;
 };
