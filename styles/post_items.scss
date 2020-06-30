@@ -1,0 +1,35 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin-top: 5em;
+  display: flex;
+  justify-content: center;
+  width: 100%
+}
+
+textarea {
+  resize: none;
+}
+
+h2 {
+  margin : 1em 0em 1em 0em;
+}
+
+
+
+
+/* media query*/
+
+@media only screen and (min-width: 1024px) {
+  form {
+    width: 100%;
+    padding-left: 5em;
+    padding-right: 20em;
+  }
+}
+
