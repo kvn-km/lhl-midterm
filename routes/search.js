@@ -22,7 +22,7 @@ const typeList = (db) => {
   const type = {};
   for(let item of db ) {
     if (!type[item]) {
-      type[item] = 1
+      type[item] = 1;
     } else {
       type[item]++;
     }
