@@ -8,6 +8,19 @@ const dbParams = require('../lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
+
+
+const addNewItem = (item) => {
+  const query = {
+    text: `INSERT INTO items (seller_id, title, price, photo, description, type, is_featured)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
+    RETURNING *`,
+    values: [`${item.seller_id}`, `${item.title}`, `${item.price}`, `${item.photo}`, `${item.description}`, `${item.type}`,`${item.featured}`]
+  }
+
+  return db.query(query).then((res) => res.rows);
+
+}
 const typeList = (db) => {
   const type = {};
   for(let item of db ) {
@@ -20,21 +33,7 @@ const typeList = (db) => {
   return type;
 }
 
-const searchItems = function(options) {
-  const queryParams = [];
-  // let query = {
-  //   text: `SELECT * FROM items`,
-  //   values:
 
-  // };
-
-  if(options.search) {
-    queryParams.push(`%${options.search}%`);
-    queryString += `WHERE title LIKE $${queryParams.length}`;
-  }
-  return db.query(query).then((res) => res.rows);
-
-}
 
 module.exports = (db) => {
   router.get("/new", (req, res) => {
@@ -43,9 +42,9 @@ module.exports = (db) => {
       .then(data => {
         const items = data.rows;
         const types = typeList(items);
-        const username = req.session["username"];
+        const username = req.session["username"]
         const templateVar = { types: types, user: username }
-        res.render("search", templateVar)
+        res.render("post_items", templateVar)
       })
       .catch(e => {
         console.error(e);
@@ -53,11 +52,12 @@ module.exports = (db) => {
       });
   });
 
-
   router.post("/new", (req, res) => {
-    searchItems({...req.body})
-      .then(options => {
-        res.json(options);
+    const userId = req.session["user_id"];
+
+    addNewItem({...req.body, seller_id: userId})
+      .then(item => {
+        res.redirect("/items");
       })
       .catch(e => {
         console.error(e);
@@ -65,4 +65,4 @@ module.exports = (db) => {
       });
   })
   return router;
-}
+};

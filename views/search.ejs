@@ -3,12 +3,13 @@
   <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/search.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <title>Best Furniture Shop</title>
   </head>
   <body>
-    <!-- <partial header> -->
-
+    <%- include('partials/_nav')%>
     <form method='POST' action='/search/new'>
       <div class="container-fluid">
         <h2>Search Items</h2>
