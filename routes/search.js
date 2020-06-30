@@ -22,16 +22,38 @@ const typeList = (db) => {
 
 const searchItems = function(options) {
   const queryParams = [];
-  // let query = {
-  //   text: `SELECT * FROM items`,
-  //   values:
+  const query = {};
+  let queryString = `SELECT * FROM items`;
 
-  // };
 
-  if(options.search) {
-    queryParams.push(`%${options.search}%`);
-    queryString += `WHERE title LIKE $${queryParams.length}`;
+  if (options.searchbar) {
+    const inputType = options.searchbar;
+    const capitalized = inputType[0].toUpperCase() + inputType.slice(1);
+    queryParams.push(`%${capitalized}%`);
+    queryString += ` WHERE title LIKE $${queryParams.length}
+    `;
   }
+
+  if (options.type) {
+    queryParams.push(`${options.type}`);
+    queryString += `${queryParams.length === 1 ? ' WHERE' : ' AND'} type = $${queryParams.length}`;
+  }
+
+  if (options.minimum_price) {
+    queryParams.push(`${options.minimum_price}`);
+    queryString += `${queryParams.length === 1 ? ' WHERE' : ' AND'} price >= $${queryParams.length}`;
+  }
+
+  if (options.maximum_price) {
+    queryParams.push(`${options.maximum_price}`);
+    queryString += `${queryParams.length === 1 ? ' WHERE' : ' AND'} price <= $${queryParams.length}`;
+  }
+
+  query["text"] = queryString;
+  query["values"] = queryParams;
+  console.log(queryString);
+  console.log(query);
+
   return db.query(query).then((res) => res.rows);
 
 }
@@ -66,3 +88,5 @@ module.exports = (db) => {
   })
   return router;
 }
+
+
