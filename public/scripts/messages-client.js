@@ -11,8 +11,6 @@ $(document).ready(() => {
       .then(
         getMessages()
           .then((messages) => {
-            console.log("hello thereeee");
-            console.log("send message message:", messages);
             $("#message").val("");
             $("#all_messages").empty();
             renderConvo(messages, "#all_messages");
