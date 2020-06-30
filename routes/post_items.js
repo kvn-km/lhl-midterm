@@ -53,7 +53,7 @@ module.exports = (db) => {
   });
 
   router.post("/new", (req, res) => {
-    const userId = req.session.userId;
+    const userId = req.session["user_id"];
 
     addNewItem({...req.body, seller_id: userId})
       .then(item => {
