@@ -1,4 +1,6 @@
 body {
+  display: flex;
+  flex-direction: column;
   header {
     display: flex;
     align-items: center;
@@ -10,5 +12,29 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     color: #ffffff;
+  }
+  main {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    .container {
+      border: 2px solid blue;
+      margin-left: 0;
+      .type {
+        border: 1px solid green;
+        width: 100vw;
+
+        .item {
+          border: 1px solid black;
+          width: inherit;
+          height: 250px;
+          margin: 1em;
+          img {
+            max-height: 200px;
+            max-width: 100%;
+          }
+        }
+      }
+    }
   }
 }
