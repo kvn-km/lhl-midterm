@@ -5,16 +5,10 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
-const path = require("path");
 const bodyParser = require("body-parser");
-const cookieSession = require("cookie-session");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieSession({
-  name: 'session',
-  keys: ["roar-roar", "like-a-dungeon-dragon"]
-}));
 
 module.exports = (db) => {
   router.get("/json/", (req, res) => {
@@ -31,7 +25,9 @@ module.exports = (db) => {
     req.session.username = "kevinKim"; // testing w my username
     console.log("user_id:", req.session.userID);
     console.log("username:", req.session.username);
-    res.sendFile(path.join(__dirname + "/messages.html"));
+    const username = req.session.username;
+    let templateVars = { user: req.session.username, user_id: req.session.userID };
+    res.render("messages", templateVars);
   });
 
   return router;

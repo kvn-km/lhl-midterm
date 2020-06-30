@@ -27,6 +27,13 @@ function createMessage(message) {
 
 const renderConvo = (message) => {
   for (const msg of message) {
-    $("#all_messages").append(createMessage(msg));
+    // setInterval(updateScrollView(), 200);
+    $("#all_messages").prepend(createMessage(msg));
   }
+
+  const updateScrollView = function() {
+    let element = document.getElementById("all_messages");
+    element.scrollTop = element.scrollHeight;
+  };
+
 };
