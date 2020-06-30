@@ -1,0 +1,14 @@
+body {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 400px;
+    width: 100vw;
+    background-image: url("/images/header.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #ffffff;
+  }
+}
