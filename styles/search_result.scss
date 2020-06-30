@@ -1,17 +1,26 @@
-form {
-  margin: 15em;
+body{
+  form {
+  margin: 10em;
 }
 
+  .search-result {
+    display: flex;
+    flex-direction: row;
+    article {
+      display: flex;
+      flex-direction: column;
+      border: 2px solid blue;
+      padding: 2em;
 
-article {
-  display: flex;
-  padding: 10em;
+    }
+
+    .image {
+      img{
+        border: 2px solid red;
+        max-width: 100%;
+        height: 100px;
+
+      }
+    }
+  }
 }
-
-article .image {
-  max-width: 100%;
-  height: auto;
-}
-
-
-
