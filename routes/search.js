@@ -20,6 +20,19 @@ const typeList = (db) => {
   return type;
 }
 
+const searchItems = function(options) {
+  const queryParams = [];
+  let queryString = `
+  SELECT * FROM items
+  `;
+
+  if(options.search) {
+    queryParams.push(`%${options.search}%`);
+    queryString += `WHERE title LIKE $${queryParams.length}`;
+  }
+
+}
+
 module.exports = (db) => {
   router.get("/new", (req, res) => {
 
@@ -35,5 +48,17 @@ module.exports = (db) => {
         res.send(e)
       });
   });
+
+
+  router.post("/new", (req, res) => {
+    searchItems({...req.body})
+      .then(options => {
+        res.json(options);
+      })
+      .catch(e => {
+        console.error(e);
+        res.send(e)
+      });
+  })
   return router;
 }
