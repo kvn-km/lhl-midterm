@@ -53,11 +53,11 @@ module.exports = (db) => {
   });
 
   router.post("/new", (req, res) => {
-    // const userId = req.session.userId;
+    const userId = req.session.userId;
 
-    addNewItem({...req.body, seller_id: 1})
+    addNewItem({...req.body, seller_id: userId})
       .then(item => {
-        res.json(item);
+        res.redirect("/items");
       })
       .catch(e => {
         console.error(e);
