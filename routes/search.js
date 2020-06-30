@@ -8,13 +8,23 @@ const dbParams = require('../lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
+const furniture = [
+  "bed frame",
+  "bookshelf",
+  "chair",
+  "desk",
+  "storage",
+  "table",
+  "tv stand"
+];
+
 const typeList = (db) => {
   const type = {};
   for(let item of db ) {
-    if (!type[item.type]) {
-      type[item.type] = 1
+    if (!type[item]) {
+      type[item] = 1
     } else {
-      type[item.type]++;
+      type[item]++;
     }
   }
   return type;
@@ -59,12 +69,12 @@ const searchItems = function(options) {
 }
 
 module.exports = (db) => {
-  router.get("/new", (req, res) => {
+  router.get("/", (req, res) => {
 
     db.query(`SELECT * FROM items;`)
       .then(data => {
         const items = data.rows;
-        const types = typeList(items);
+        const types = typeList(furniture);
         const username = req.session["username"];
         const templateVar = { types: types, user: username }
         res.render("search", templateVar)
@@ -76,16 +86,27 @@ module.exports = (db) => {
   });
 
 
-  router.post("/new", (req, res) => {
+  router.post("/", (req, res) => {
+
     searchItems({...req.body})
       .then(options => {
-        res.json(options);
+        const results = options;
+        const types = typeList(furniture);
+        const username = req.session["username"];
+        const templateVar = { types: types, results: results, user: username }
+
+        res.render("search_result", templateVar);
+        console.log(options);
+
       })
       .catch(e => {
         console.error(e);
         res.send(e)
       });
   })
+
+
+
   return router;
 }
 
