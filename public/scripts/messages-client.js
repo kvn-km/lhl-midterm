@@ -5,41 +5,23 @@ $(document).ready(() => {
 
   $("#send_message").submit(function() {
     event.preventDefault();
-    let theMessage = $("#message").val();
+    // let theMessage = $("#message").val();
     let theMessageSerialized = $(this).serialize();
     sendAMessage(theMessageSerialized)
       .then(
         getMessages()
           .then((messages) => {
             console.log("hello thereeee");
-            $("#the_message").val("");
+            console.log("send message message:", messages);
+            $("#message").val("");
             $("#all_messages").empty();
             renderConvo(messages, "#all_messages");
           })
       ).catch(error => { console.log("POST Message Fail", error); });
-
-
-
-    // // sendMessage("/messagesRoute", theMessage)
-    // sendMessage(theMessage)
-    //   .then(
-    //     function() {
-    //       getMessages()
-    //         .then((messages) => {
-    //           console.log("hello thereeee");
-
-    //           $("#the_message").val("");
-    //           $("#all_messages").empty();
-    //           renderConvo(messages, "#all_messages");
-    //         });
-    //     })
-    //   .catch(error => { console.log("Initial GET Fail", error); });
-
   });
 
   getMessages()
     .then(messages => {
-      console.log("hello");
       renderConvo(messages);
     })
     .catch(error => { console.log("Initial GET Fail", error); });

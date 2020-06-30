@@ -45,7 +45,7 @@ const widgetsRoutes = require("./routes/widgets");
 const usersRoutes = require("./routes/users");
 
 const messagesRoutes = require("./routes/messages");
-const messagesHelper = require("./public/scripts/messages-helperFunctions.js")(db);
+const messagesHelper = require("./public/scripts/messages-helperFunctions.js");
 const messagesRoute = require("./routes/messages-Route")(messagesHelper);
 
 
