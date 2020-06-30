@@ -42,8 +42,8 @@ module.exports = (db) => {
       .then(data => {
         const items = data.rows;
         const types = typeList(items);
-
-        const templateVar = { types: types }
+        const username = req.session["username"]
+        const templateVar = { types: types, user: username }
         res.render("post_items", templateVar)
       })
       .catch(e => {
