@@ -6,29 +6,24 @@ const getMessages = () => {
 };
 
 // const sendMessage = (sender_id, receiver_id, message) => {
-const sendMessage = (message) => {
-  // const { sender_id, receiver_id, message } = req.body;
-  const { Pool } = require('pg');
-  const dbParams = require('../../lib/db.js');
-  const db = new Pool(dbParams);
-  db.connect();
-  const sender = 3;
-  const receiver = 1;
-  const theMSG = message;
-  const sendQuery = {
-    text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp) VALUES ($1, $2, $3, NOW()) RETURNING *;`,
-    values: [sender, receiver, theMSG]
-  };
+// const sendMessage = (data) => {
+//   return $.post("/messagesRoute", data);
+// };
 
-  db.query(`SELECT username FROM users WHERE id = ${sender};`)
-    .then(data => {
-      console.log(data.rows[0]["username"]); // kevinKim
-    });
-
-  db.query(sendQuery)
-    .then(returning => { return returning; });
-
-
+const sendAMessage = (data) => {
+  $.post("/", (req, res) => {
+    console.log("the message is:", req.body.message);
+    console.log("the cookies are:", req.session);
+    const theMSG = req.body.message;
+    const sender = req.session.userID;
+    const receiver = 1; // needs to be updated
+    const sendQuery = {
+      text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp) VALUES ($1, $2, $3, NOW()) RETURNING *;`,
+      values: [sender, receiver, theMSG]
+    };
+    return db.query(sendQuery)
+      .then(returning => { console.log("returning is:", returning.rows); });
+  });
 };
 
 function createMessage(message) {

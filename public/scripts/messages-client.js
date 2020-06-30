@@ -3,69 +3,39 @@
 $(document).ready(() => {
   console.log("Yo. Doc's Ready!");
 
-  // $("form").submit(function() {
-  //   event.preventDefault();
-  //   let tweetTextSample = $("#tweet_text").val();
-  //   if (tweetTextSample.length > 140 || tweetTextSample.length === 0) { // REF: 2. Throw error if tweet is too long.
-  //     $("[class=errorMSG]").animate({ "margin-left": "0rem", "opacity": "100" });
-  //   } else if (tweetTextSample.length > 0 && tweetTextSample.length <= 140) {
-  //     let theTweet = $(this).serialize();
-  //     $.post("/tweets/", theTweet)
-  //       .then(
-  //         function() {
-  //           getTweets()
-  //             .then((tweets) => {
-  //               $("#tweet_text").val(""); // clear the text field
-  //               $(".counter").val("140"); // reset counter
-  //               $("#all_tweets").empty(); // clear the current tweet container
-  //               renderTweets(tweets, "#all_tweets"); // re-render tweets
-  //             });
-  //         },
-  //         function(err) { // if errors, throw errors
-  //           console.error("POST FAIL", error);
-  //         }
-  //       );
-  //   }
-  // });
-
-  // // REF: 2. if error was thrown, remove it when the textarea is being adjusted
-  // $("[id=tweet_text]").on("input", function() {
-  //   $("[class=errorMSG]").animate({ "margin-left": "15rem", "opacity": "0" });
-  // });
-
-  $.ajax({
-    type: "POST",
-    cache: false,
-    url: '/',
-    data: { 'name='+name, 'surname='+surname, 'email='+email, 'pass='+pass },
-    success: function(data) {
-      alert('data has been stored to database');
-    }
-  });
-
-
-  $("form").submit(function() {
+  $("#send_message").submit(function() {
     event.preventDefault();
-    let theMessageSample = $("#the_message").val();
-    if (theMessageSample.length > 0) {
-      let theMessage = $(this).serialize();
-      // sendMessage("/messagesRoute", theMessage)
-      sendMessage(theMessage)
-        .then(
-          function() {
-            getMessages()
-              .then((messages) => {
-                console.log("hello thereeee");
-
-                $("#the_message").val("");
-                $("#all_messages").empty();
-                renderConvo(messages, "#all_messages");
-              });
+    let theMessage = $("#message").val();
+    let theMessageSerialized = $(this).serialize();
+    sendAMessage(theMessageSerialized)
+      .then(
+        getMessages()
+          .then((messages) => {
+            console.log("hello thereeee");
+            $("#the_message").val("");
+            $("#all_messages").empty();
+            renderConvo(messages, "#all_messages");
           })
-        .catch(error => { console.log("Initial GET Fail", error); });
-    }
-  });
+      ).catch(error => { console.log("POST Message Fail", error); });
 
+
+
+    // // sendMessage("/messagesRoute", theMessage)
+    // sendMessage(theMessage)
+    //   .then(
+    //     function() {
+    //       getMessages()
+    //         .then((messages) => {
+    //           console.log("hello thereeee");
+
+    //           $("#the_message").val("");
+    //           $("#all_messages").empty();
+    //           renderConvo(messages, "#all_messages");
+    //         });
+    //     })
+    //   .catch(error => { console.log("Initial GET Fail", error); });
+
+  });
 
   getMessages()
     .then(messages => { renderConvo(messages); })

@@ -20,23 +20,20 @@ module.exports = () => {
   });
 
   // router.post("/", (req, res) => {
-  //   const { sender_id, receiver_id, message } = req.body;
-  //   const sender = 3;
-  //   const receiver = 1;
-  //   const theMSG = message;
+  //   console.log("the message is:", req.body.message);
+  //   console.log("the cookies are:", req.session);
+  //   const theMSG = req.body.message;
+  //   const sender = req.session.userID;
+  //   const receiver = 1; // needs to be updated
   //   const sendQuery = {
   //     text: `INSERT INTO messages(sender_id, receiver_id, message, timestamp) VALUES ($1, $2, $3, NOW()) RETURNING *;`,
   //     values: [sender, receiver, theMSG]
   //   };
-  //   db.query(`SELECT username FROM users WHERE id = ${sender};`)
-  //     .then(data => {
-  //       console.log(data.rows[0]["username"]); // kevinKim
-  //     });
-  //   return db
-  //     .query(sendQuery)
-  //     .then(returning => returning.rows);
+  //   return db.query(sendQuery)
+  //     .then(returning => { console.log("returning is:", returning.rows); });
   // });
 
 
   return router;
 };
+
