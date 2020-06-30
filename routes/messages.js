@@ -6,7 +6,6 @@ const router = express.Router();
 const path = require("path");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
-const $ = require("../public/vendor/jquery-3.0.0");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,7 +14,7 @@ app.use(cookieSession({
   keys: ["roar-roar", "like-a-dungeon-dragon"]
 }));
 
-module.exports = (db, sendMessage) => {
+module.exports = (db) => {
   router.get("/json/", (req, res) => {
     db.query(`SELECT * FROM messages;`)
       .then(data => {

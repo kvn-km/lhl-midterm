@@ -38,6 +38,9 @@ $(document).ready(() => {
   });
 
   getMessages()
-    .then(messages => { renderConvo(messages); })
+    .then(messages => {
+      console.log("hello");
+      renderConvo(messages);
+    })
     .catch(error => { console.log("Initial GET Fail", error); });
 });

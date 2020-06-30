@@ -8,7 +8,7 @@ const dbParams = require('../lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
-module.exports = () => {
+module.exports = (db) => {
 
   router.get("/", (req, res) => {
     return db.query(`SELECT * FROM messages;`)
