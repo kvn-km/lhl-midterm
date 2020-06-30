@@ -17,7 +17,6 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
-
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -49,45 +48,29 @@ app.use(
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const widgetsRoutes = require("./routes/widgets");
-const usersRoutes = require("./routes/users");
 
 const homeRoutes = require("./routes/homepage");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
+const usersRoutes = require("./routes/users");
 const postNewItems = require("./routes/post_items");
 const messagesRoutes = require("./routes/messages");
 const messagesHelper = require("./public/scripts/messages-helperFunctions.js");
 const messagesRoute = require("./routes/messages-Route")(messagesHelper);
 
-
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 
 app.use("/", homeRoutes(db));
 app.use("/posts", postNewItems(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/messages", messagesRoutes(db));
+app.use("/users", usersRoutes(db));
 app.use("/messagesRoute", messagesRoute);
 
-
-
-
-
-
-
-
-
-
-// Warning: avoid creating more routes in this file!
-// Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}\n\n~~~~~~~BEGIN~~~~~~~\n\n\n`);
+  console.log(
+    `Example app listening on port ${PORT}\n\n~~~~~~~BEGIN~~~~~~~\n\n\n`
+  );
 });
