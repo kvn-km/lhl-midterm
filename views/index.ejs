@@ -30,19 +30,23 @@
     </header>
     <main>
       <% for(let type in types) { %>
-      <div class="container">
-        <h4><%= types[type] %></h4>
+      <div class="container-fluid">
+        <div>
+          <h4><%= types[type] %></h4>
+        </div>
         <div class="row text-center type">
           <% for(let featuredItem in featuredItems ) {
           if(featuredItems[featuredItem].type === types[type] ){%>
           <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
             <a href="/items/:<%=featuredItems[featuredItem].id%>">
-              <div id="title">
-                <h6><%= featuredItems[featuredItem].title %></h6>
-              </div>
               <img src="<%= featuredItems[featuredItem].photo  %>" />
-              <div id="price">
-                <h6><%= featuredItems[featuredItem].price %>$</h6>
+              <div class="info">
+                <div id="title">
+                  <h6><%= featuredItems[featuredItem].title %></h6>
+                </div>
+                <div id="price">
+                  <h6><%= featuredItems[featuredItem].price %>$</h6>
+                </div>
               </div>
             </a>
           </div>
