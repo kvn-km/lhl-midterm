@@ -57,6 +57,7 @@ const postNewItems = require("./routes/post_items");
 const messagesRoutes = require("./routes/messages");
 const messagesHelper = require("./public/scripts/messages-helperFunctions.js");
 const messagesRoute = require("./routes/messages-Route")(messagesHelper);
+const itemRoutes = require("./routes/item");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -68,6 +69,7 @@ app.use("/logout", logoutRoutes(db));
 app.use("/messages", messagesRoutes(db));
 app.use("/users", usersRoutes(db));
 app.use("/messagesRoute", messagesRoute);
+app.use("/item", itemRoutes(db));
 
 app.listen(PORT, () => {
   console.log(
