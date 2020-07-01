@@ -18,6 +18,10 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <title>My listings</title>
   </head>
@@ -27,7 +31,7 @@
     <main>
       <div class="favourites-items">
         <div class="section-title">
-          <h3>Favourites Items</h3>
+          <p>Favourites Items</p>
         </div>
         <div class="row text-center items">
           <% for(let favourite in favourites ) { %>
@@ -41,13 +45,13 @@
               </div>
               <div class="bottom-line">
                 <div id="price">
-                  <% if(favourites[favourite].is_sold){ %>
+                  <% if(!favourites[favourite].is_sold){ %>
                   <p>CA$<%= favourites[favourite].price %></p>
                   <% }else{ %>
                   <p>Sold</p>
                   <% }%>
                 </div>
-                <button></button>
+                <i class="fa fa-heart fa-2x" style="color: red;"></i>
               </div>
             </div>
           </div>

@@ -14,6 +14,14 @@ body {
       background-color: #fcf6e3;
 
       .section-title {
+        background-color: #e0be5e;
+        border-top-left-radius: 0.5em;
+        border-top-right-radius: 0.5em;
+        p {
+          font-size: 1.3em;
+          padding: 0.3em;
+          color: #fcf6e3;
+        }
       }
       .items {
         margin: auto;

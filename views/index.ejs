@@ -18,6 +18,10 @@
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/home.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <title>Home Page</title>
   </head>
@@ -29,25 +33,36 @@
     </header>
     <main>
       <% for(let type in types) { %>
-      <div class="container-fluid">
-        <div>
-          <h4><%= types[type] %></h4>
+      <div class="container-type">
+        <div class="section-title">
+          <p><%= types[type] %></p>
         </div>
+
         <div class="row text-center type">
           <% for(let featuredItem in featuredItems ) {
           if(featuredItems[featuredItem].type === types[type] ){%>
-          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item">
+          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
             <a href="/items/<%=featuredItems[featuredItem].id%>">
               <img src="<%= featuredItems[featuredItem].photo  %>" />
-              <div class="info">
-                <div id="title">
-                  <h6><%= featuredItems[featuredItem].title %></h6>
-                </div>
-                <div id="price">
-                  <h6>CA$<%= featuredItems[featuredItem].price %></h6>
-                </div>
-              </div>
             </a>
+            <div class="info">
+              <div id="title">
+                <p><%= featuredItems[featuredItem].title %></p>
+              </div>
+              <div class="bottom-line">
+                <div id="price">
+                  <% if(!featuredItems[featuredItem].is_sold){ %>
+                  <p>CA$<%= featuredItems[featuredItem].price %></p>
+                  <% }else{ %>
+                  <p>Sold</p>
+                  <% }%>
+                </div>
+                <% if(favouritesIds.includes(featuredItems[featuredItem].id)){
+                %>
+                <i class="fa fa-heart fa-2x" style="color: red;"></i>
+                <% }%>
+              </div>
+            </div>
           </div>
           <% } } %>
         </div>
