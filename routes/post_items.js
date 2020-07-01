@@ -57,12 +57,15 @@ module.exports = (db) => {
 
     addNewItem({...req.body, seller_id: userId})
       .then(item => {
-        res.redirect("/items");
+        console.log(userId);
+        res.send(item);
       })
       .catch(e => {
         console.error(e);
         res.send(e)
       });
   })
+
+
   return router;
 };
