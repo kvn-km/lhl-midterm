@@ -135,12 +135,13 @@ module.exports = (db) => {
         .then(options => {
           getUserFavouritesIdByUserId(userId)
             .then(favouritesIds => {
+
           const results = options;
           const types = typeList(items);
 
-          const templateVar = { types, results, user: username }
+          const templateVar = { types, results, user: username, favouritesIds }
           res.render("search_result", templateVar);
-          console.log(options);
+          console.log(username);
          })
         })
 
@@ -155,4 +156,5 @@ module.exports = (db) => {
 
   return router;
 }
+
 
