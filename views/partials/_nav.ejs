@@ -11,10 +11,10 @@
     <% if(user) { %>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="/search/new">Search</a>
+        <a class="nav-link" href="/search">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-item nav-link" href="/users/:id">My listings</a>
+        <a class="nav-item nav-link" href="/user">My listings</a>
       </li>
       <li class="nav-item">
         <a class="nav-item nav-link" href="/messages">Messages</a>
@@ -26,7 +26,7 @@
     <div>
       <form class="form-inline my-2 my-lg-0" action="/logout" method="POST">
         <div class="mr-sm-2">
-          Logged In As: <%= user %>
+          Logged in as: <%= user %>
         </div>
         <button style="margin-left: 1em;" type="submit" class="btn btn-outline-dark my-2 my-sm-0">
           Logout

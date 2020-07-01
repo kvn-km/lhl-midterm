@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  //get the user object with its username
+  //gets the user object with its username
   const getUserByUsername = (username) => {
     return db
       .query(`SELECT * FROM users WHERE username LIKE $1;`, [username])

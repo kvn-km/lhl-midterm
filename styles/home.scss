@@ -1,6 +1,8 @@
 body {
   display: flex;
   flex-direction: column;
+  background-color: #fffcf2;
+
   header {
     display: flex;
     align-items: center;
@@ -16,49 +18,78 @@ body {
   main {
     display: flex;
     flex-direction: column;
-    background-color: #fffcf2;
-    width: 100vw;
-    .container-fluid {
+
+    .container-type {
       display: block;
       background-color: #fcf6e3;
       border-radius: 0.5em;
-
+      margin: auto;
       width: 90vw;
       margin-top: 1em;
       margin-bottom: 1em;
 
-      .type {
-        width: inherit;
-
-        .item {
-          background-color: #fffcf2;
-          border-radius: 0.2em;
-          max-width: 90%;
-          height: 250px;
-          padding: 0;
-          margin: 1em;
-
-          a:link,
-          a:visited {
-            color: black;
-            text-decoration: none;
-          }
-          a:link,
-          a:visited:active {
-            color: black;
-          }
-          a {
-            img {
-              max-height: 200px;
-              max-width: 100%;
-              padding-bottom: 2em;
-            }
-          }
+      .section-title {
+        background-color: #e0be5e;
+        border-top-left-radius: 0.5em;
+        border-top-right-radius: 0.5em;
+        p {
+          font-size: 1.3em;
+          padding: 0.3em;
+          color: #fcf6e3;
         }
-        .item:hover {
+      }
+      .type {
+        margin: auto;
+        .item-container:hover {
           background-color: #fcf0c7;
           box-shadow: 0 0 0 5px #fcf0c7;
           transition: all 200ms ease-out;
+        }
+        .item-container {
+          max-width: 90%;
+          padding: 0;
+          margin: 1em;
+          .img_wrp {
+            img {
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 0.1em;
+              display: inline-block;
+              position: relative;
+            }
+            i {
+              position: absolute;
+              top: 0;
+              right: 0;
+              padding: 0.2em;
+              color: #b80f0f;
+            }
+          }
+          .info {
+            display: flex;
+            flex-direction: column;
+            #title {
+              align-self: flex-start;
+              p {
+                font-size: 1em;
+              }
+            }
+            .bottom-line {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              #price {
+                p {
+                  font-size: 1.3em;
+                }
+              }
+              button {
+                margin-right: 1em;
+              }
+            }
+          }
         }
       }
     }

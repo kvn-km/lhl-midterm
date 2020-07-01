@@ -225,7 +225,7 @@ timestamp
 
 ## Search page (search.js)
 
-- HTTP method: GET - URL pattern: /search/new - USE: display the search form and search bar;
+- HTTP method: GET - URL pattern: /search - USE: display the search form and search bar;
 - HTTP method: POST - URL pattern: /search - USE: query the database;
 - HTTP method: GET - URL pattern: /search - USE: display filtered data;
 
@@ -241,13 +241,13 @@ timestamp
 
 ## User's page(users.js)
 
-- HTTP method: GET - URL pattern: /users/:id - USE: display the favorited items and the items on sale for the user;
-- HTTP method: POST - URL pattern: /users/:id/ - USE: redirect to item page redirect to /items/:id;
+- HTTP method: GET - URL pattern: /user - USE: display the favorited items and the items on sale for the user;
+- HTTP method: POST - URL pattern: /user - USE: redirect to item page redirect to /items/:id;
 
-- HTTP method: POST - URL pattern: /users/:id/delete - USE: delete the item from the database, redirect to /users/;
-- HTTP method: POST - URL pattern: /users/:id/sold - USE: alter the item in database with item_id - change the attribute is_sold TRUE, redirect to /users/;
-- HTTP method: POST - URL pattern: /users/:id/active - USE: alter the item in database with item_id - change the attribute is_active FALSE, redirect to /users/;
-- HTTP method: POST - URL pattern: /users/:id/favourite - USE: alter the item in favourites database with item_id and user_id, redirect to /users/;
+- HTTP method: POST - URL pattern: /user/:id/delete - USE: delete the item from the database, redirect to /users/;
+- HTTP method: POST - URL pattern: /user/:id/sold - USE: alter the item in database with item_id - change the attribute is_sold TRUE, redirect to /user/;
+- HTTP method: POST - URL pattern: /user/:id/active - USE: alter the item in database with item_id - change the attribute is_active FALSE, redirect to /user/;
+- HTTP method: POST - URL pattern: /user/:id/favourite - USE: alter the item in favourites database with item_id and user_id, redirect to /user/;
 
 ## Item page (item.js)
 
