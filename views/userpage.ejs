@@ -36,9 +36,12 @@
         <div class="row text-center items">
           <% for(let favourite in favourites ) { %>
           <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-            <a href="/items/<%=favourites[favourite].id%>">
-              <img src="<%= favourites[favourite].photo  %>" />
-            </a>
+            <div class="img_wrp">
+              <a href="/items/<%=favourites[favourite].id%>">
+                <img src="<%= favourites[favourite].photo  %>" />
+              </a>
+              <i class="fa fa-heart fa-2x"></i>
+            </div>
             <div class="info">
               <div id="title">
                 <p><%= favourites[favourite].title %></p>
@@ -51,87 +54,108 @@
                   <p>Sold</p>
                   <% }%>
                 </div>
-                <i class="fa fa-heart fa-2x" style="color: red;"></i>
               </div>
             </div>
+            <form
+              class="form-inline"
+              action="/user/<%=favourites[favourite].id%>/favourite"
+              method="POST"
+            >
+              <div class="form-group mb-2">
+                <button type="submit" class="btn btn-danger">
+                  Remove
+                </button>
+              </div>
+            </form>
           </div>
           <% } %>
         </div>
       </div>
-      <div class="seller-items">
-        <div class="on-sale-items">
-          <h6>Items on sale</h6>
-          <table class="table">
-            <tbody>
-              <% for(let item in sellerItems) { if(!sellerItems[item].is_sold){
-              %>
-              <tr>
-                <td>
-                  <a href="/items/<%=sellerItems[item].id%>">
-                    <img src="<%= sellerItems[item].photo  %>" />
-                  </a>
-                  <div><%= sellerItems[item].title %></div>
-                </td>
-                <td>
-                  <form
-                    class="form-inline"
-                    action="/users/:id/active"
-                    method="POST"
-                  >
-                    <div class="form-group mb-2">
-                      <button type="submit" class="btn btn-outline-danger">
-                        Inactive
-                      </button>
-                    </div>
-                  </form>
-                </td>
-                <td>
-                  <form
-                    class="form-inline"
-                    action="/user/<%=sellerItems[item].id%>/sold"
-                    method="POST"
-                  >
-                    <div class="form-group mb-2">
-                      <button type="submit" class="btn btn-outline-danger">
-                        Marked as sold
-                      </button>
-                    </div>
-                  </form>
-                </td>
-                <td>
-                  <form
-                    class="form-inline"
-                    action="/user/<%=sellerItems[item].id%>/delete"
-                    method="POST"
-                  >
-                    <div class="form-group mb-2">
-                      <button type="submit" class="btn btn-outline-danger">
-                        Delete
-                      </button>
-                    </div>
-                  </form>
-                </td>
-              </tr>
-              <% }} %>
-            </tbody>
-          </table>
+
+      <div class="on-sale-items">
+        <div class="section-title">
+          <p>Items on sale</p>
         </div>
-        <div class="sold-items">
-          <h6>Items sold</h6>
-          <div class="row text-center">
-            <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
-            <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-              <a href="/items/<%=sellerItems[item].id%>">
-                <img src="<%= sellerItems[item].photo  %>" />
-              </a>
-              <div class="info">
-                <div id="title">
-                  <p><%= sellerItems[item].title %></p>
+        <table class="table">
+          <tbody>
+            <% for(let item in sellerItems) { if(!sellerItems[item].is_sold){ %>
+            <tr>
+              <td class="item-container">
+                <a href="/items/<%=sellerItems[item].id%>">
+                  <img src="<%= sellerItems[item].photo  %>" />
+                </a>
+                <div class="info">
+                  <div id="title">
+                    <p><%= sellerItems[item].title %></p>
+                  </div>
+                  <div class="bottom-line">
+                    <div id="price">
+                      <% if(!sellerItems[item].is_sold){ %>
+                      <p>CA$<%= sellerItems[item].price %></p>
+                      <% }else{ %>
+                      <p>Sold</p>
+                      <% }%>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="button">
+                <form
+                  class="form-inline"
+                  action="/user/<%=sellerItems[item].id%>/sold"
+                  method="POST"
+                >
+                  <div class="form-group mb-2">
+                    <button type="submit" class="btn btn-warning">
+                      Marked as sold
+                    </button>
+                  </div>
+                </form>
+              </td>
+              <td class="button">
+                <form
+                  class="form-inline"
+                  action="/user/<%=sellerItems[item].id%>/delete"
+                  method="POST"
+                >
+                  <div class="form-group mb-2">
+                    <button type="submit" class="btn btn-danger">
+                      Delete
+                    </button>
+                  </div>
+                </form>
+              </td>
+            </tr>
+            <% }} %>
+          </tbody>
+        </table>
+      </div>
+      <div class="sold-items">
+        <div class="section-title">
+          <p>Sold items</p>
+        </div>
+        <div class="row text-center">
+          <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
+          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+            <a href="/items/<%=sellerItems[item].id%>">
+              <img src="<%= sellerItems[item].photo  %>" />
+            </a>
+            <div class="info">
+              <div id="title">
+                <p><%= sellerItems[item].title %></p>
+              </div>
+              <div class="bottom-line">
+                <div id="price">
+                  <% if(!sellerItems[item].is_sold){ %>
+                  <p>CA$<%= sellerItems[item].price %></p>
+                  <% }else{ %>
+                  <p>Sold</p>
+                  <% }%>
                 </div>
               </div>
             </div>
-            <% } } %>
           </div>
+          <% } } %>
         </div>
       </div>
     </main>

@@ -49,12 +49,22 @@ body {
           max-width: 90%;
           padding: 0;
           margin: 1em;
-
-          img {
-            height: 180px;
-            width: 100%;
-            object-fit: cover;
-            border-radius: 0.1em;
+          .img_wrp {
+            img {
+              width: 100%;
+              height: 180px;
+              object-fit: cover;
+              border-radius: 0.1em;
+              display: inline-block;
+              position: relative;
+            }
+            i {
+              position: absolute;
+              top: 0;
+              right: 0;
+              padding: 0.2em;
+              color: #b80f0f;
+            }
           }
           .info {
             display: flex;
