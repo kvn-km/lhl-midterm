@@ -58,7 +58,82 @@
           <% } %>
         </div>
       </div>
-      <div class="seller-items"></div>
+      <div class="seller-items">
+        <div class="on-sale-items">
+          <h6>Items on sale</h6>
+          <table class="table">
+            <tbody>
+              <% for(let item in sellerItems) { if(!sellerItems[item].is_sold){
+              %>
+              <tr>
+                <td>
+                  <a href="/items/<%=sellerItems[item].id%>">
+                    <img src="<%= sellerItems[item].photo  %>" />
+                  </a>
+                  <div><%= sellerItems[item].title %></div>
+                </td>
+                <td>
+                  <form
+                    class="form-inline"
+                    action="/users/:id/active"
+                    method="POST"
+                  >
+                    <div class="form-group mb-2">
+                      <button type="submit" class="btn btn-outline-danger">
+                        Inactive
+                      </button>
+                    </div>
+                  </form>
+                </td>
+                <td>
+                  <form
+                    class="form-inline"
+                    action="/user/<%=sellerItems[item].id%>/sold"
+                    method="POST"
+                  >
+                    <div class="form-group mb-2">
+                      <button type="submit" class="btn btn-outline-danger">
+                        Marked as sold
+                      </button>
+                    </div>
+                  </form>
+                </td>
+                <td>
+                  <form
+                    class="form-inline"
+                    action="/user/<%=sellerItems[item].id%>/delete"
+                    method="POST"
+                  >
+                    <div class="form-group mb-2">
+                      <button type="submit" class="btn btn-outline-danger">
+                        Delete
+                      </button>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <% }} %>
+            </tbody>
+          </table>
+        </div>
+        <div class="sold-items">
+          <h6>Items sold</h6>
+          <div class="row text-center">
+            <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
+            <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+              <a href="/items/<%=sellerItems[item].id%>">
+                <img src="<%= sellerItems[item].photo  %>" />
+              </a>
+              <div class="info">
+                <div id="title">
+                  <p><%= sellerItems[item].title %></p>
+                </div>
+              </div>
+            </div>
+            <% } } %>
+          </div>
+        </div>
+      </div>
     </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

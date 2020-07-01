@@ -71,4 +71,47 @@ body {
       }
     }
   }
+
+  .seller-items {
+    border-radius: 0.5em;
+    display: block;
+    width: 90vw;
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: #fcf6e3;
+
+    .on-sale-items {
+      img {
+        max-width: 250px;
+        height: 180px;
+        object-fit: cover;
+      }
+    }
+    .sold-items {
+      .item-container {
+        max-width: 90%;
+        padding: 0;
+        margin: 1em;
+
+        img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          border-radius: 0.1em;
+        }
+
+        .info {
+          display: flex;
+          flex-direction: column;
+          #title {
+            align-self: flex-start;
+            p {
+              font-size: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
 }

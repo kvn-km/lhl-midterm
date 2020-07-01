@@ -52,7 +52,7 @@ const widgetsRoutes = require("./routes/widgets");
 const homeRoutes = require("./routes/homepage");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");
-const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/user");
 const postNewItems = require("./routes/post_items");
 const messagesRoutes = require("./routes/messages");
 const messagesHelper = require("./public/scripts/messages-helperFunctions.js");
@@ -67,7 +67,7 @@ app.use("/posts", postNewItems(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/messages", messagesRoutes(db));
-app.use("/users", usersRoutes(db));
+app.use("/user", usersRoutes(db));
 app.use("/messagesRoute", messagesRoute);
 app.use("/item", itemRoutes(db));
 
