@@ -18,24 +18,10 @@
   </div>
 
   <div class="item-options">
-    <!-- if you're the owner, activate or deactivate it -->
-    <% if (item.seller_id === user.user_id && item.is_active === true){ %>
-    <form class="item-deactivate" action="/item/<%= item.id %>/deactivate" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Deactivate</button></form>
-    <% } else if (item.seller_id === user.user_id && item.is_active === false) { %>
-    <form class="item-activate" action="/item/<%= item.id %>/activate" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Activate</button></form>
 
-    if you're not the owner, favourite or unfavorite it, buy it, or msg
-    <% } else if (item.seller_id !== user.user_id && favourites.includes(item_id)) { %>
-    <form class="item-Unfavourite" action="/item/<%= item.id %>/unfavourite" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Unfavourite</button></form>
     <form class="item-buy" action="/item/<%= item.id %>/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
-    <form class="msg-seller" action="/messages<%= item.seller_id %>" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
+    <form class="msg-seller" action="/messages/" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
 
-    <!--  if you're not the owner, favorite, buy, msg -->
-    <% } else if (item.seller_id !== user.user_id) { %>
-    <form class="item-favourite" action="/item/<%= item.id %>/favourite" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Favourite</button></form>
-    <form class="item-buy" action="/item/<%= item.id %>/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
-    <form class="msg-seller" action="/messages<%= item.seller_id %>" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
-    <% } %>
 
   </div>
 

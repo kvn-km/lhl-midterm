@@ -13,5 +13,4 @@ $(document).ready(() => {
     window.location.href = `/item/${itemID}/buy/`;
   });
 
-
 });
