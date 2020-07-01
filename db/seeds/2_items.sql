@@ -1,7 +1,7 @@
 DELETE FROM items;
 
 INSERT INTO items (seller_id, photo, price, title, description, type, is_active, is_sold, is_featured)
-VALUES (1,'https://i.ibb.co/6RpfsMV/bed-frame.jpg', 1, 'Almost Deep Green', 'A description for Almost Deep Green', 'bed frame', TRUE, TRUE, FALSE),
+VALUES (1,'https://i.ibb.co/DkFCHGQ/bed-frame.jpg', 1, 'Almost Deep Green', 'A description for Almost Deep Green', 'bed frame', TRUE, TRUE, FALSE),
        (1,'https://i.ibb.co/zV1pdMg/bookshelf.jpg', 2, 'Fake Ube', 'A description for Fake Ube', 'bookshelf', TRUE, FALSE, FALSE),
        (1,'https://i.ibb.co/xqF3YHX/chair-dining.jpg', 3, 'Socially Distant Blue', 'A description for Socially Distant Blue', 'chair', TRUE, FALSE, TRUE),
        (2,'https://i.ibb.co/tLWVK1N/chair-outdoor.jpg', 4, 'Stock Market Ticker', 'A description for Stock Market Ticker', 'chair', TRUE, FALSE, FALSE),
@@ -14,9 +14,9 @@ VALUES (1,'https://i.ibb.co/6RpfsMV/bed-frame.jpg', 1, 'Almost Deep Green', 'A d
        (4,'https://i.ibb.co/GQzGjnX/table-outdoor.jpg', 10, 'Youthful Nostalgia', 'A description for Youthful Nostalgia', 'table', TRUE, FALSE, FALSE),
        (4,'https://i.ibb.co/YXRhV7M/tv-stand.jpg', 11, 'Firey Moss', 'A description for Firey Moss', 'tv stand', TRUE, FALSE, FALSE),
        (5,'https://i.ibb.co/YXRhV7M/tv-stand.jpg', 12, 'Twelfth Purple', 'A description for Twelfth Purple', 'tv stand', TRUE, FALSE, FALSE),
-       (5,'https://i.ibb.co/6RpfsMV/bed-frame.jpg', 13, 'Crew Blue', 'A description for Crew Blue', 'bed frame', TRUE, FALSE, FALSE),
+       (5,'https://i.ibb.co/DkFCHGQ/bed-frame.jpg', 13, 'Crew Blue', 'A description for Crew Blue', 'bed frame', TRUE, FALSE, FALSE),
        (5,'https://i.ibb.co/GQzGjnX/table-outdoor.jpg', 14, 'Nether Cyan', 'A description for Nether Cyan', 'table', TRUE, FALSE, FALSE),
-       (6,'https://i.ibb.co/6RpfsMV/bed-frame.jpg', 15, 'Sailor Blue', 'A description for Sailor Blue', 'bed frame', TRUE, FALSE, FALSE),
+       (6,'https://i.ibb.co/DkFCHGQ/bed-frame.jpg', 15, 'Sailor Blue', 'A description for Sailor Blue', 'bed frame', TRUE, FALSE, FALSE),
        (6,'https://i.ibb.co/zV1pdMg/bookshelf.jpg', 16, 'Purple Gazing Space', 'A description for Purple Gazing Space', 'bookshelf', TRUE, FALSE, FALSE),
        (6,'https://i.ibb.co/xqF3YHX/chair-dining.jpg', 17, 'Eraser Pink', 'A description for Eraser Pink', 'chair', TRUE, FALSE, FALSE),
        (7,'https://i.ibb.co/tLWVK1N/chair-outdoor.jpg', 18, 'Murdered Unicorn', 'A description for Murdered Unicorn', 'chair', TRUE, FALSE, FALSE),

@@ -27,8 +27,6 @@ function createMessage(message) {
 
 const renderConvo = (message) => {
   for (const msg of message) {
-    // setInterval(updateScrollView(), 200);
     $("#all_messages").prepend(createMessage(msg));
   }
-
 };

@@ -10,6 +10,7 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require("morgan");
 let cookieSession = require("cookie-session");
+const path = require("path");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -74,13 +75,7 @@ app.use("/logout", logoutRoutes(db));
 app.use("/messages", messagesRoutes(db));
 app.use("/messagesRoute", messagesRoute);
 app.use("/item", itemRoutes(db));
-
-
-
-
-
-
-
+app.use(express.static(path.join(__dirname, 'public/scripts/')));
 
 
 

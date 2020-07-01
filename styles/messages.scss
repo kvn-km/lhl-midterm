@@ -2,24 +2,7 @@
 // sass ./styles/messages.scss ./public/styles/messages.css
 
 @media only screen and (min-width: 299px) and (max-device-width: 767px) {
-  html {
-    height: 100vh;
-    width: 100%;
-  }
-  body {
-    height: 95%;
-    background-color: #eee;
-  }
-  nav {
-    background-color: #e0be5e;
-    width: 100vw;
-    z-index: 1;
-    .navbar-brand img {
-      margin-right: 1em;
-    }
-  }
   #container {
-    font-size: 10px;
     width: 100%;
     padding: 1rem;
     background: #eee;
