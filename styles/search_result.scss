@@ -1,31 +1,82 @@
-body{
-  search-form {
-  margin: 5em;
-}
+body {
+  display: flex;
+  flex-direction: column;
 
-  .search-result {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: 7em;
+    width: 100vw;
+    background-image: url("/images/chairs.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color:#3b2b0c;
+    filter: sepia(40%);
+    font-size: 3em;
+  }
+
+  main {
     display: flex;
     flex-direction: column;
     background-color: #fffcf2;
+    width: 100vw;
 
-    article {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      border-bottom: 2px dotted #e0b35e ;
-      font-size: 2em;
-      color: gray;
+    .container-fluid {
+      display: block;
+      background-color: #fcf6e3;
+      width: 90vw;
+      padding: 2em;
+      margin-top: 1em;
+      margin-bottom: 1em;
+
+      color: #695d52;
     }
 
-    .image {
+    .btn {
+      display: flex;
+      flex-direction: row-reverse;
+    }
 
-      img{
-        border: 2px solid red;
-        width: 300px;
-        height: 250px;
-        padding: 1em;
+    .search-result {
+      display: flex;
+      flex-direction: column;
+      margin: 5em;
 
+      article {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border: 2px dotted #edd9b2 ;
+        background-color: #fffcf2;
+        margin-bottom: 1em;
+        font-size: 1.5em;
+        color: #695d52;
+      }
+
+      article:hover {
+        border: 2px solid #e0be5e;
+        background-color: #fadca2;
+        box-shadow: 10px 10px 5px 0px darkgrey;
+         visibility: visible;
+        }
+
+      .image {
+
+        img{
+
+          width: 300px;
+          height: 250px;
+          padding: 1em;
+
+        }
       }
     }
+
   }
 }
+
+
+
+
