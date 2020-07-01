@@ -1,34 +1,33 @@
 <% for (let thing of item) { %>
 
-<article id="the-item">
+<% if (thing.id % 2 !== 0) { %>
+<article class="the-item" style="background-color: rgb(245, 245, 245)">
+  <% } else { %>
+  <article class="the-item">
+    <% } %>
 
-  <div class="item-header">
-    <h2><%= thing.title %></h2>
-    <div id="item-pic">
-      <img src="<%= thing.photo %>" alt="<%= thing.title %>">
+    <div class="item-header">
+      <h2><%= thing.title %></h2>
+      <div class="item-pic">
+        <img src="<%= thing.photo %>" alt="<%= thing.title %>">
+      </div>
     </div>
-  </div>
 
-  <div class="item-info">
-    <table>
-      <tr>
-        <td><%= thing.title %></td>
-        <td>$<%= thing.price %></td>
-      </tr>
-      <tr>
-        <%= thing.type.toUpperCase() %>
-      </tr>
-      <tr>
-        <%= thing.description %>
-      </tr>
-    </table>
-  </div>
+    <div class="item-info">
+      <div class="info-container">
+        <span><%= thing.type.toUpperCase() %></span>
+        <span class="price">$<%= thing.price %></span>
+      </div>
+      <div>
+        <div><%= thing.description %></div>
+      </div>
+    </div>
 
-  <div class="item-options">
-    <form id="item-buy" action="/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
-    <form id="msg-seller" action="/messages" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
-  </div>
+    <div class="item-options">
+      <form class="item-buy" action="/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
+      <form class="msg-seller" action="/messages" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
+    </div>
 
-</article>
+  </article>
 
-<% } %>
+  <% } %>

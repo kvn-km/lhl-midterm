@@ -11,9 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const help = require("../public/scripts/item-helper");
-const { fetchAllActiveItems } = require('../public/scripts/item-helper');
 console.log("itemHelper:", help);
-
 
 module.exports = (db) => {
 
@@ -30,12 +28,11 @@ module.exports = (db) => {
     help.fetchAllActiveItems(db)
       .then(data => {
         item.push(data.rows);
-        let templateVars = { user: cookies, helper: help, item: item[0] };
+        let templateVars = { user: cookies, helper: help, item: item[0], counter: 0 };
         console.log(templateVars.item[0]);
         res.render("item", templateVars);
       });
   });
-
 
   router.get("/:item_id", (req, res) => {
 

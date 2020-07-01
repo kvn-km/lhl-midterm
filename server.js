@@ -75,7 +75,7 @@ app.use("/logout", logoutRoutes(db));
 app.use("/messages", messagesRoutes(db));
 app.use("/messagesRoute", messagesRoute);
 app.use("/item", itemRoutes(db));
-app.use(express.static(path.join(__dirname, 'public/scripts/')));
+// app.use(express.static(path.join(__dirname, 'public/scripts')));
 
 
 

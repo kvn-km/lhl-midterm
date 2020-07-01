@@ -18,8 +18,8 @@
 
   <!-- scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!-- <script type="text/javascript" src="scripts/item-clientjs"></script>
-  <script type="text/javascript" src="scripts/item-helper.js"></script> -->
+  <!-- <script type="text/javascript" src="/item-client.js"></script>
+  <script type="text/javascript" src="/item-helper.js"></script> -->
 
 
   <title>Products</title>
@@ -27,10 +27,11 @@
 
 <body>
 
-  <%- include('partials/_nav') %>
+  <%- include('partials/_navItem') %>
 
   <section id="container">
     <h1 class="header">All Products</h1>
+
     <%- include('partials/_item-body') %>
 
   </section>
