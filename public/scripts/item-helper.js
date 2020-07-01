@@ -1,6 +1,10 @@
 // helper functions for item page
 // const cookieSession = require("cookie-session");
 
+const randomNumberGenerator3000 = (min, max) => {
+  return (Math.random() * (max - min) + min);
+};
+
 const fetchAllItems = (db, cookies) => {
   return db.query(`SELECT * FROM items;`)
     .catch(error => { console.log("FETCH ALL ITEMS Fail", error); });
@@ -17,7 +21,7 @@ const fetchAllUserItems = (db, cookies) => {
     values: [cookies.user_id]
   };
   return db.query(query)
-    .catch(error => { console.log("FETCH ALL ACTIVE Fail", error); });
+    .catch(error => { console.log("FETCH ALL USER Fail", error); });
 };
 
 const fetchUserFavItems = (db, cookies) => {
@@ -26,39 +30,63 @@ const fetchUserFavItems = (db, cookies) => {
     values: [cookies.user_id]
   };
   return db.query(query)
-    .catch(error => { console.log("FETCH ALL ACTIVE Fail", error); });
+    .catch(error => { console.log("FETCH USER FAVS Fail", error); });
 };
 
-const createItem = (db, cookies) => {
+const fetchItemFromID = (db, item_id) => {
+  const query = {
+    text: `SELECT * FROM items WHERE id = $1;`,
+    values: [item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("FETCH ITEM Fail", error); });
+};
+
+const buyItem = (db, item_id, user_id) => {
+  const query = {
+    text: `UPDATE items SET is_active = 'FALSE', is_sold = 'TRUE', is_featured = 'FALSE', seller_id = $1 WHERE id = $2 RETURNING *;`,
+    values: [user_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("BUY ITEM Fail", error); });
+};
+
+
+
+
+const createItem = (item, cookies) => {
   // create elements
   let $container = $("<article>");
   let $header = $("<div>");
-  let $header_title = $("<h1>");
+  let $header_title = $("<h2>");
   let $header_pic_holder = $("<div>");
   let $header_pic = $("<img>");
   let $info = $("<div>");
-  let $info_table = $("<table>");
-  let $info_table_row = $("<tr>");
-  let $info_table_data = $("<td>");
+  let $info_container = $("<div>");
+  let $info_type = $("<span>");
+  let $info_price = $("<span");
+  let $info_description_container = $("<div>");
+  let $info_description_text = $("<div>");
   let $options = $("<div>");
   let $form_buy = $("<form>");
   let $form_msg = $("<form");
   let $button_buy = $("<button>");
   let $button_msg = $("<button>");
   // add classes and attributes
-  $container.attr("id", "the-item");
+  $container.addClass("the-item");
   $header.addClass("item-header");
-  $header_title.text(INFORMATION[title]);
+  $header_title.text(item.title);
   $header_pic_holder.addClass("item-pic");
-  $header_pic.attr("src", INFORMATION[url]);
-  // $tweet_profileIMG.attr({ "src": tweet.user.avatars, "width": "50", "height": "50" });
+  $header_pic.attr("src", item.photo);
   $info.addClass("item-info");
+  $info_container.addClass("item-container");
+  $info_price.addClass("price");
   $options.addClass("item-options");
-  $form_buy.attr("id", "item-buy", "action", "/buy", "method", "POST");
-  $button_buy.attr("type", "submit");
+  $form_buy.attrs("class", "item-buy", "action", "/buy", "method", "POST");
+  $button_buy.attr("class", "btn btn-outline-success btn-sm", "type", "submit");
   $button_buy.text("Buy");
-  $form_msg.attr("id", "msg-seller", "action", "/messages", "method", "GET");
-  $button_msg.attr("type", "submit");
+  $form_msg.attr("class", "msg-seller", "action", "/messages", "method", "GET");
+  $button_msg.attr("class", "btn btn-outline-info btn-sm", "type", "submit");
   $button_msg.text("Message Seller");
   //build the elements
   $container
@@ -67,21 +95,29 @@ const createItem = (db, cookies) => {
       .append($header_pic_holder
         .append($header_pic)))
     .append($info
-      .append($info_table)
-      .append($info_table_row)
-      .append($info_table_data))
+      .append($info_container
+        .append($info_type)
+        .append($info_price))
+      .append($info_description_container
+        .append($info_description_text)))
     .append($options
       .append($button_buy)
       .append($button_msg));
   return $container;
 };
 
-const renderItem = (item) => {
+const renderItem = (db, item) => {
   console.log("item:", item.length, "\n", item[0]);
   if (item.length > 1) {
-    for (const thing of item) {
-      $("#container").append(createItem(thing));
-    }
+
+    let numbers = [];
+    for (let i = 0; i < 5; i++) {
+      numbers.push(randomNumberGenerator3000(0, item[item.length - 1].id));
+    };
+    numbers.forEach(number => $("#container").append(createItem(item[number])));
+    // for (const thing of item) {
+    //   $("#container").append(createItem(thing));
+    // }
   } else {
     $("#container").append(createItem(item));
   }
@@ -139,6 +175,8 @@ module.exports = {
   fetchAllActiveItems,
   fetchAllUserItems,
   fetchUserFavItems,
+  fetchItemFromID,
+  buyItem,
   createItem,
   renderItem
 };

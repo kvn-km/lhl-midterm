@@ -1,0 +1,25 @@
+<article class="the-item">
+
+  <div class="item-header" id="<%= item.id %>">
+    <h2><%= item.title %></h2>
+    <div class="item-pic">
+      <img src="<%= item.photo %>" alt="<%= item.title %>">
+    </div>
+  </div>
+
+  <div class="item-info">
+    <div class="info-container">
+      <span><%= item.type.toUpperCase() %></span>
+      <span class="price">$<%= item.price %></span>
+    </div>
+    <div>
+      <div><%= item.description %></div>
+    </div>
+  </div>
+
+  <div class="item-options">
+    <form class="item-buy" action="/item/<%= item.id %>/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
+    <form class="msg-seller" action="/messages<%= item.seller_id %>" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
+  </div>
+
+</article>

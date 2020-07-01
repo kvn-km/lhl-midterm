@@ -1,4 +1,8 @@
+<h1 class="header">All Products</h1>
+
 <% for (let thing of item) { %>
+
+<% if (thing.seller_id !== user.user_id && thing.is_active === true){ %>
 
 <% if (thing.id % 2 !== 0) { %>
 <article class="the-item" style="background-color: rgb(245, 245, 245)">
@@ -6,7 +10,7 @@
   <article class="the-item">
     <% } %>
 
-    <div class="item-header">
+    <div class="ahref item-header" id="<%= thing.id %>">
       <h2><%= thing.title %></h2>
       <div class="item-pic">
         <img src="<%= thing.photo %>" alt="<%= thing.title %>">
@@ -24,10 +28,12 @@
     </div>
 
     <div class="item-options">
-      <form class="item-buy" action="/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
-      <form class="msg-seller" action="/messages" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
+      <form class="item-buy" action="/item/<%= thing.id %>/buy/" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
+      <form class="msg-seller" action="/messages/<%= thing.seller_id %>" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
+
     </div>
 
   </article>
 
+  <% } %>
   <% } %>
