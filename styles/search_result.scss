@@ -2,20 +2,20 @@ body {
   display: flex;
   flex-direction: column;
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    height: 7em;
-    width: 100vw;
-    background-image: url("/images/chairs.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    color:#3b2b0c;
-    filter: sepia(40%);
-    font-size: 3em;
-  }
+  // header {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   flex-grow: 1;
+  //   height: 7em;
+  //   width: 100vw;
+  //   background-image: url("/images/chairs.png");
+  //   background-repeat: no-repeat;
+  //   background-size: cover;
+  //   color:#3b2b0c;
+  //   filter: sepia(40%);
+  //   font-size: 3em;
+  // }
 
   main {
     display: flex;
