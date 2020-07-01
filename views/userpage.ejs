@@ -16,58 +16,49 @@
       crossorigin="anonymous"
     />
     <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
 
-    <title>Home Page</title>
+    <title>My listings</title>
   </head>
 
   <body>
     <%- include('partials/_nav') %>
-    <header>
-      <h1>My Flea Market.ca</h1>
-    </header>
     <main>
-      <% for(let type in types) { %>
-      <div class="container-type">
+      <div class="favourites-items">
         <div class="section-title">
-          <p><%= types[type] %></p>
+          <p>Favourites Items</p>
         </div>
-
-        <div class="row text-center type">
-          <% for(let featuredItem in featuredItems ) {
-          if(featuredItems[featuredItem].type === types[type] ){%>
+        <div class="row text-center items">
+          <% for(let favourite in favourites ) { %>
           <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-            <a href="/items/<%=featuredItems[featuredItem].id%>">
-              <img src="<%= featuredItems[featuredItem].photo  %>" />
+            <a href="/items/<%=favourites[favourite].id%>">
+              <img src="<%= favourites[favourite].photo  %>" />
             </a>
             <div class="info">
               <div id="title">
-                <p><%= featuredItems[featuredItem].title %></p>
+                <p><%= favourites[favourite].title %></p>
               </div>
               <div class="bottom-line">
                 <div id="price">
-                  <% if(!featuredItems[featuredItem].is_sold){ %>
-                  <p>CA$<%= featuredItems[featuredItem].price %></p>
+                  <% if(!favourites[favourite].is_sold){ %>
+                  <p>CA$<%= favourites[favourite].price %></p>
                   <% }else{ %>
                   <p>Sold</p>
                   <% }%>
                 </div>
-                <% if(favouritesIds.includes(featuredItems[featuredItem].id)){
-                %>
                 <i class="fa fa-heart fa-2x" style="color: red;"></i>
-                <% }%>
               </div>
             </div>
           </div>
-          <% } } %>
+          <% } %>
         </div>
       </div>
-      <% } %>
+      <div class="seller-items"></div>
     </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
