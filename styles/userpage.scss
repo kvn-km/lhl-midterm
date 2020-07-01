@@ -1,0 +1,66 @@
+body {
+  background-color: #fffcf2;
+  main {
+    display: flex;
+    flex-direction: column;
+
+    .favourites-items {
+      border-radius: 0.5em;
+      display: block;
+      width: 90vw;
+      margin: auto;
+      margin-top: 1em;
+      margin-bottom: 1em;
+      background-color: #fcf6e3;
+
+      .section-title {
+      }
+      .items {
+        margin: auto;
+
+        .item-container:hover {
+          background-color: #fcf0c7;
+          box-shadow: 0 0 0 5px #fcf0c7;
+          transition: all 200ms ease-out;
+        }
+        .item-container {
+          max-width: 90%;
+          padding: 0;
+          margin: 1em;
+
+          img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0.1em;
+          }
+
+          .info {
+            display: flex;
+            flex-direction: column;
+            #title {
+              align-self: flex-start;
+              p {
+                font-size: 1em;
+              }
+            }
+            .bottom-line {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+
+              #price {
+                p {
+                  font-size: 1.3em;
+                }
+              }
+              button {
+                margin-right: 1em;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

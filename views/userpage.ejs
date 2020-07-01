@@ -24,9 +24,37 @@
 
   <body>
     <%- include('partials/_nav') %>
-    <header></header>
     <main>
-      Hello
+      <div class="favourites-items">
+        <div class="section-title">
+          <h3>Favourites Items</h3>
+        </div>
+        <div class="row text-center items">
+          <% for(let favourite in favourites ) { %>
+          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+            <a href="/items/<%=favourites[favourite].id%>">
+              <img src="<%= favourites[favourite].photo  %>" />
+            </a>
+            <div class="info">
+              <div id="title">
+                <p><%= favourites[favourite].title %></p>
+              </div>
+              <div class="bottom-line">
+                <div id="price">
+                  <% if(favourites[favourite].is_sold){ %>
+                  <p>CA$<%= favourites[favourite].price %></p>
+                  <% }else{ %>
+                  <p>Sold</p>
+                  <% }%>
+                </div>
+                <button></button>
+              </div>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+      <div class="seller-items"></div>
     </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
