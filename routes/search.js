@@ -68,6 +68,28 @@ const searchItems = function(options) {
 
 }
 
+//gets the user favourites items
+const getUserFavouritesIdByUserId = (userId) => {
+  return db
+    .query(
+      `SELECT items.id FROM items
+          JOIN favourites
+          ON favourites.item_id = items.id
+          WHERE user_id = $1;`,
+      [userId]
+    )
+    .then((data) => {
+      let userFavourites = data.rows;
+      let userFavouritesIds = [];
+      userFavourites.forEach((userFavourite) => {
+        userFavouritesIds.push(userFavourite.id);
+      });
+      return userFavouritesIds;
+    })
+    .catch((err) => console.error("query error", err.stack));
+};
+
+
 module.exports = (db) => {
   router.get("/", (req, res) => {
 
