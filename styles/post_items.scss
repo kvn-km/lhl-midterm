@@ -2,20 +2,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    height: 7em;
-    width: 100vw;
-    background-image: url("/images/lamp.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    color:#3b2b0c;
-    filter: sepia(40%);
-    font-size: 3em;
-  }
+
 
   main {
     display: flex;
@@ -58,10 +45,15 @@ body {
 
 /* media query*/
 
-@media only screen and (min-width: 1024px) {
-  // main
-  //   .container-fluid {
-  //    width: 50vw;
-  // }
-}
+/* media query*/
+@media only screen and (min-width:768px) {
+  body {
 
+    main {
+
+      .container-fluid {
+        width: 60vw;
+      }
+    }
+  }
+}
