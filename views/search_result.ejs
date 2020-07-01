@@ -14,7 +14,7 @@
     <%- include('partials/_searchbox')%>
     <div class="search-result">
       <% for(let result of results) { %>
-      <article onclick="location.href='/items/<%= result.id%>';">
+      <article onclick="location.href='/item/<%= result.id%>';">
         <div class="image">
         <img src= "<%= result.photo %>">
         </div>
@@ -22,7 +22,7 @@
           <lable for="title"><%= result.title %></lable>
           <p>$<%= result.price %></p>
         </div>
-        <% if(favouritesIds.includes(featuredItems[featuredItem].id)){
+        <% if(favouritesIds.includes(result.id)){
           %>
         <div>
           <i class="fa fa-heart fa-2x" style="color: red;"></i>
@@ -51,17 +51,3 @@
       crossorigin="anonymous"
     ></script>
 </html>
-<!--
-<div class="bottom-line">
-  <div id="price">
-    <% if(!featuredItems[featuredItem].is_sold){ %>
-    <p>CA$<%= featuredItems[featuredItem].price %></p>
-    <% }else{ %>
-    <p>Sold</p>
-    <% }%>
-  </div>
-  <% if(favouritesIds.includes(featuredItems[featuredItem].id)){
-  %>
-  <i class="fa fa-heart fa-2x" style="color: red;"></i>
-  <% }%>
-</div> -->
