@@ -45,8 +45,6 @@ app.use(
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 
-const widgetsRoutes = require("./routes/widgets");
-const usersRoutes = require("./routes/user");
 const homeRoutes = require("./routes/homepage");
 const loginRoutes = require("./routes/login");
 const logoutRoutes = require("./routes/logout");

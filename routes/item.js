@@ -60,11 +60,9 @@ module.exports = (db) => {
           .then(data => {
             item.push(data.rows[0]);
             let templateVars = { anItem: false, user: cookies, helper: help, item: item[0], counter: 0 };
-            // res.redirect("user", templateVars);
-            res.redirect("/item");
+            res.redirect("../user", templateVars);
           });
       });
-
   });
 
 
