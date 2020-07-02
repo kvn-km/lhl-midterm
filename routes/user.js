@@ -92,7 +92,6 @@ module.exports = (db) => {
     const userId = req.session["user_id"];
     const username = req.session["username"];
     getUserFavouritesById(userId).then((favourites) => {
-      console.log("favourites:", favourites);
       getSellerItemsBySellerId(userId).then((sellerItems) => {
         let templateVars = { favourites, user: username, sellerItems };
         res.render("userpage", templateVars);
