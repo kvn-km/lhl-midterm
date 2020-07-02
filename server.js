@@ -22,7 +22,6 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
@@ -41,6 +40,7 @@ app.use(
     ],
   })
 );
+app.use(express.static(path.join(__dirname, 'public/scripts')));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -59,7 +59,6 @@ const searchRoutes = require("./routes/search");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 
-app.use(express.static(path.join(__dirname, 'public/scripts')));
 app.use("/", homeRoutes(db));
 app.use("/posts", postNewItems(db));
 app.use("/login", loginRoutes(db));

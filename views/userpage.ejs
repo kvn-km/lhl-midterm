@@ -1,180 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Meta Information -->
-    <meta charset="utf-8" />
-    <!-- Disabling viewport Zooming-->
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-    />
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
 
-    <title>My listings</title>
-  </head>
+<head>
+  <!-- Meta Information -->
+  <meta charset="utf-8" />
+  <!-- Disabling viewport Zooming-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/userpage.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-  <body>
-    <%- include('partials/_nav') %>
-    <main>
-      <div class="favourites-items">
-        <div class="section-title">
-          <p>Favourites Items</p>
-        </div>
-        <div class="row text-center items">
-          <% for(let favourite in favourites ) { %>
-          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-            <div class="img_wrp">
-              <a href="/items/<%=favourites[favourite].id%>">
-                <img src="<%= favourites[favourite].photo  %>" />
-              </a>
-              <i class="fa fa-heart fa-2x"></i>
-            </div>
-            <div class="info">
-              <div id="title">
-                <p><%= favourites[favourite].title %></p>
-              </div>
-              <div class="bottom-line">
-                <div id="price">
-                  <% if(!favourites[favourite].is_sold){ %>
-                  <p>CA$<%= favourites[favourite].price %></p>
-                  <% }else{ %>
-                  <p>Sold</p>
-                  <% }%>
-                </div>
-              </div>
-            </div>
-            <form
-              class="form-inline"
-              action="/user/<%=favourites[favourite].id%>/favourite"
-              method="POST"
-            >
-              <div class="form-group mb-2">
-                <button type="submit" class="btn btn-danger">
-                  Remove
-                </button>
-              </div>
-            </form>
-          </div>
-          <% } %>
-        </div>
+  <title>My listings</title>
+</head>
+
+<body>
+  <%- include('partials/_nav') %>
+  <main>
+    <div class="favourites-items">
+      <div class="section-title">
+        <p>Favourites Items</p>
       </div>
-
-      <div class="on-sale-items">
-        <div class="section-title">
-          <p>Items on sale</p>
-        </div>
-        <table class="table">
-          <tbody>
-            <% for(let item in sellerItems) { if(!sellerItems[item].is_sold){ %>
-            <tr>
-              <td class="item-container">
-                <a href="/items/<%=sellerItems[item].id%>">
-                  <img src="<%= sellerItems[item].photo  %>" />
-                </a>
-                <div class="info">
-                  <div id="title">
-                    <p><%= sellerItems[item].title %></p>
-                  </div>
-                  <div class="bottom-line">
-                    <div id="price">
-                      <% if(!sellerItems[item].is_sold){ %>
-                      <p>CA$<%= sellerItems[item].price %></p>
-                      <% }else{ %>
-                      <p>Sold</p>
-                      <% }%>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td class="button">
-                <form
-                  class="form-inline"
-                  action="/user/<%=sellerItems[item].id%>/sold"
-                  method="POST"
-                >
-                  <div class="form-group mb-2">
-                    <button type="submit" class="btn btn-warning">
-                      Marked as sold
-                    </button>
-                  </div>
-                </form>
-              </td>
-              <td class="button">
-                <form
-                  class="form-inline"
-                  action="/user/<%=sellerItems[item].id%>/delete"
-                  method="POST"
-                >
-                  <div class="form-group mb-2">
-                    <button type="submit" class="btn btn-danger">
-                      Delete
-                    </button>
-                  </div>
-                </form>
-              </td>
-            </tr>
-            <% }} %>
-          </tbody>
-        </table>
-      </div>
-      <div class="sold-items">
-        <div class="section-title">
-          <p>Sold items</p>
-        </div>
-        <div class="row text-center">
-          <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
-          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-            <a href="/items/<%=sellerItems[item].id%>">
-              <img src="<%= sellerItems[item].photo  %>" />
+      <div class="row text-center items">
+        <% for(let favourite in favouritesIds ) { %>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+          <div class="img_wrp">
+            <a href="/items/<%=favouritesIds[favourite].id%>">
+              <img src="<%= favouritesIds[favourite].photo  %>" />
             </a>
-            <div class="info">
-              <div id="title">
-                <p><%= sellerItems[item].title %></p>
-              </div>
-              <div class="bottom-line">
-                <div id="price">
-                  <% if(!sellerItems[item].is_sold){ %>
-                  <p>CA$<%= sellerItems[item].price %></p>
-                  <% }else{ %>
-                  <p>Sold</p>
-                  <% }%>
-                </div>
+            <i class="fa fa-heart fa-2x"></i>
+          </div>
+          <div class="info">
+            <div id="title">
+              <p><%= favouritesIds[favourite].title %></p>
+            </div>
+            <div class="bottom-line">
+              <div id="price">
+                <% if(!favouritesIds[favourite].is_sold){ %>
+                <p>CA$<%= favouritesIds[favourite].price %></p>
+                <% }else{ %>
+                <p>Sold</p>
+                <% }%>
               </div>
             </div>
           </div>
-          <% } } %>
+          <form class="form-inline" action="/user/<%=favouritesIds[favourite].id%>/favourite" method="POST">
+            <div class="form-group mb-2">
+              <button type="submit" class="btn btn-danger">
+                Remove
+              </button>
+            </div>
+          </form>
         </div>
+        <% } %>
       </div>
-    </main>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+    </div>
+
+    <div class="on-sale-items">
+      <div class="section-title">
+        <p>Items on sale</p>
+      </div>
+      <table class="table">
+        <tbody>
+          <% for(let item in sellerItems) { if(!sellerItems[item].is_sold){ %>
+          <tr>
+            <td class="item-container">
+              <a href="/items/<%=sellerItems[item].id%>">
+                <img src="<%= sellerItems[item].photo  %>" />
+              </a>
+              <div class="info">
+                <div id="title">
+                  <p><%= sellerItems[item].title %></p>
+                </div>
+                <div class="bottom-line">
+                  <div id="price">
+                    <% if(!sellerItems[item].is_sold){ %>
+                    <p>CA$<%= sellerItems[item].price %></p>
+                    <% }else{ %>
+                    <p>Sold</p>
+                    <% }%>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="button">
+              <form class="form-inline" action="/user/<%=sellerItems[item].id%>/sold" method="POST">
+                <div class="form-group mb-2">
+                  <button type="submit" class="btn btn-warning">
+                    Marked as sold
+                  </button>
+                </div>
+              </form>
+            </td>
+            <td class="button">
+              <form class="form-inline" action="/user/<%=sellerItems[item].id%>/delete" method="POST">
+                <div class="form-group mb-2">
+                  <button type="submit" class="btn btn-danger">
+                    Delete
+                  </button>
+                </div>
+              </form>
+            </td>
+          </tr>
+          <% }} %>
+        </tbody>
+      </table>
+    </div>
+    <div class="sold-items">
+      <div class="section-title">
+        <p>Sold items</p>
+      </div>
+      <div class="row text-center">
+        <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+          <a href="/items/<%=sellerItems[item].id%>">
+            <img src="<%= sellerItems[item].photo  %>" />
+          </a>
+          <div class="info">
+            <div id="title">
+              <p><%= sellerItems[item].title %></p>
+            </div>
+            <div class="bottom-line">
+              <div id="price">
+                <% if(!sellerItems[item].is_sold){ %>
+                <p>CA$<%= sellerItems[item].price %></p>
+                <% }else{ %>
+                <p>Sold</p>
+                <% }%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } } %>
+      </div>
+    </div>
+  </main>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
 </html>
