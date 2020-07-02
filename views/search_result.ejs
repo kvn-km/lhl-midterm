@@ -12,6 +12,7 @@
     <%- include('partials/_nav')%>
     <main>
     <%- include('partials/_searchbox')%>
+    <div class="results">
     <div class="search-result">
       <% for(let result of results) { %>
       <article onclick="location.href='/item/<%= result.id%>';">
@@ -30,6 +31,7 @@
         <% }%>
       </article>
       <% } %>
+    </div>
     </div>
   </main>
   </body>
