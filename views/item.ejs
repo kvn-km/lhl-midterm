@@ -11,37 +11,42 @@
 
   <link rel="stylesheet" href="/styles/layout.css" type="text/css">
   <link rel="stylesheet" href="/styles/nav.css" type="text/css">
-  <link rel="stylesheet" href="/styles/messages.css" type="text/css">
+  <link rel="stylesheet" href="/styles/item.css" type="text/css">
 
   <!-- fav icons missing bug fix -->
   <link rel="shortcut icon" href="#" />
 
   <!-- scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script type="text/javascript" src="/scripts/messages-client.js"></script>
-  <script type="text/javascript" src="/scripts/messages-helperFunctions.js"></script>
+  <script type="text/javascript" src="/item-client.js"></script>
+  <!-- <script type="text/javascript" src="/item-helper.js"></script> -->
 
-  <title>Items</title>
+  <% if(anItem){ %>
+  <title>Product : <%= item.title %></title>
 </head>
 
 <body>
-  <%- include('partials/_nav') %>
+  <%- include('partials/_navData') %>
   <section id="container">
-
-
-
-
-
-
-
-
-
+    <%- include('partials/_an-item') %>
   </section>
 
-  <!-- dual jquery bug, removing second instance -->
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-</body>
+  <% } else { %>
+
+  <title>All Products</title>
+  </head>
+
+  <body>
+    <%- include('partials/_navData') %>
+    <section id="container">
+      <%- include('partials/_item-body') %>
+    </section>
+    <% } %>
+
+    <!-- dual jquery bug, removing second instance -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
 
 </html>

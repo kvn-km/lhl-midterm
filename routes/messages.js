@@ -21,14 +21,18 @@ module.exports = (db) => {
   });
 
   router.get("/", (req, res) => {
-    req.session.userID = 3; // testing w user id 3
-    req.session.username = "kevinKim"; // testing w my username
-    console.log("user_id:", req.session.userID);
-    console.log("username:", req.session.username);
-    const username = req.session.username;
-    let templateVars = { user: req.session.username, user_id: req.session.userID };
+    const cookies = { username: req.session.username, user_id: req.session.user_id };
+    let templateVars = {
+      user: cookies,
+    };
     res.render("messages", templateVars);
   });
+
+
+
+
+
+
 
   return router;
 };
