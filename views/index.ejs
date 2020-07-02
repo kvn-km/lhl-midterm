@@ -1,70 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Meta Information -->
+    <meta charset="utf-8" />
+    <!-- Disabling viewport Zooming-->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/home.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
-<head>
-  <!-- Meta Information -->
-  <meta charset="utf-8" />
-  <!-- Disabling viewport Zooming-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <!-- App CSS -->
-  <link rel="stylesheet" href="/styles/home.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Home Page</title>
+  </head>
 
-  <title>Home Page</title>
-</head>
-
-<body>
-  <%- include('partials/_nav') %>
-  <header>
-    <h1>My Flea Market.ca</h1>
-  </header>
-  <main>
-    <% for(let type in types) { %>
-    <div class="container-type">
-      <div class="section-title">
-        <p><%= types[type] %></p>
-      </div>
-
-      <div class="row text-center type">
-        <% for(let featuredItem in featuredItems ) {
+  <body>
+    <%- include('partials/_nav') %>
+    <header>
+      <h1>My Flea Market.ca</h1>
+    </header>
+    <main>
+      <% for(let type in types) { %>
+      <div class="container-type">
+        <div class="section-title">
+          <p><%= types[type] %></p>
+        </div>
+        <div class="row text-center type">
+          <% for(let featuredItem in featuredItems ) {
           if(featuredItems[featuredItem].type === types[type] ){%>
-        <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-          <div class="img_wrp">
-            <a href="/item/<%=featuredItems[featuredItem].id%>">
-              <img src="<%= featuredItems[featuredItem].photo  %>" />
-            </a>
-            <% if(favouritesIds.includes(featuredItems[featuredItem].id)){ %>
-            <i class="fa fa-heart fa-2x"></i>
-            <% }%>
-          </div>
-          <div class="info">
-            <div id="title">
-              <p><%= featuredItems[featuredItem].title %></p>
+          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+            <div class="img_wrp">
+              <a href="/item/<%=featuredItems[featuredItem].id%>">
+                <img src="<%= featuredItems[featuredItem].photo  %>" />
+              </a>
+              <% if(favouritesIds.includes(featuredItems[featuredItem].id)){ %>
+              <i class="fa fa-heart fa-2x"></i>
+              <% }%>
             </div>
-            <div class="bottom-line">
-              <div id="price">
-                <% if(!featuredItems[featuredItem].is_sold){ %>
-                <p>CA$<%= featuredItems[featuredItem].price %></p>
-                <% }else{ %>
-                <p>Sold</p>
-                <% }%>
+            <div class="info">
+              <div id="title">
+                <p><%= featuredItems[featuredItem].title %></p>
+              </div>
+              <div class="bottom-line">
+                <div id="price">
+                  <% if(!featuredItems[featuredItem].is_sold){ %>
+                  <p>CA$<%= featuredItems[featuredItem].price %></p>
+                  <% }else{ %>
+                  <p>Sold</p>
+                  <% }%>
+                </div>
               </div>
             </div>
           </div>
+          <% } } %>
         </div>
-        <% } } %>
       </div>
-    </div>
-    <% } %>
-  </main>
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-
+      <% } %>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

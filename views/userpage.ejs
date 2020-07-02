@@ -24,29 +24,29 @@
         <p>Favourites Items</p>
       </div>
       <div class="row text-center items">
-        <% for(let favourite in favouritesIds ) { %>
+        <% for(let favourite in favourites ) { %>
         <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
           <div class="img_wrp">
-            <a href="/items/<%=favouritesIds[favourite].id%>">
-              <img src="<%= favouritesIds[favourite].photo  %>" />
+            <a href="/items/<%=favourites[favourite].id%>">
+              <img src="<%= favourites[favourite].photo  %>" />
             </a>
             <i class="fa fa-heart fa-2x"></i>
           </div>
           <div class="info">
             <div id="title">
-              <p><%= favouritesIds[favourite].title %></p>
+              <p><%= favourites[favourite].title %></p>
             </div>
             <div class="bottom-line">
               <div id="price">
-                <% if(!favouritesIds[favourite].is_sold){ %>
-                <p>CA$<%= favouritesIds[favourite].price %></p>
+                <% if(!favourites[favourite].is_sold){ %>
+                <p>CA$<%= favourites[favourite].price %></p>
                 <% }else{ %>
                 <p>Sold</p>
                 <% }%>
               </div>
             </div>
           </div>
-          <form class="form-inline" action="/user/<%=favouritesIds[favourite].id%>/favourite" method="POST">
+          <form class="form-inline" action="/user/<%=favourites[favourite].id%>/favourite" method="POST">
             <div class="form-group mb-2">
               <button type="submit" class="btn btn-danger">
                 Remove
@@ -115,7 +115,7 @@
       <div class="row text-center">
         <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
         <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-          <a href="/items/<%=sellerItems[item].id%>">
+          <a href="/item/<%=sellerItems[item].id%>">
             <img src="<%= sellerItems[item].photo  %>" />
           </a>
           <div class="info">
