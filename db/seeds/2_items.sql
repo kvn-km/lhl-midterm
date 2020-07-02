@@ -1,7 +1,7 @@
 DELETE FROM items;
 
 INSERT INTO items (seller_id, photo, price, title, description, type, is_active, is_sold, is_featured)
-VALUES (1,'https://i.ibb.co/DkFCHGQ/bed-frame.jpg', 1, 'Almost Deep Green', 'A description for Almost Deep Green', 'bed frame', TRUE, TRUE, FALSE),
+VALUES (1,'https://i.ibb.co/DkFCHGQ/bed-frame.jpg', 1, 'Almost Deep Green', 'A description for Almost Deep Green', 'bed frame', TRUE, TRUE, TRUE),
        (1,'https://i.ibb.co/zV1pdMg/bookshelf.jpg', 2, 'Fake Ube', 'A description for Fake Ube', 'bookshelf', TRUE, FALSE, FALSE),
        (1,'https://i.ibb.co/xqF3YHX/chair-dining.jpg', 3, 'Socially Distant Blue', 'A description for Socially Distant Blue', 'chair', TRUE, FALSE, TRUE),
        (2,'https://i.ibb.co/tLWVK1N/chair-outdoor.jpg', 4, 'Stock Market Ticker', 'A description for Stock Market Ticker', 'chair', TRUE, FALSE, FALSE),

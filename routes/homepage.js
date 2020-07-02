@@ -34,29 +34,33 @@ module.exports = (db) => {
   };
 
   //gets all featured items
-  const getAllFeaturedItems = () => {
+  const getAllItems = () => {
     return db
-      .query(`SELECT id,photo,title,price,is_sold,type FROM items`)
+      .query(
+        `SELECT id,photo,title,price,is_sold,type , is_featured
+              FROM items`
+      )
       .then((data) => {
-        let featuredItems = data.rows;
-        return featuredItems;
+        let items = data.rows;
+        return items;
       })
       .catch((err) => console.error("query error", err.stack));
   };
+
   //Renders the home page with the featured items
 
   router.get("/", (req, res) => {
     const userId = req.session["user_id"];
     const username = req.session["username"];
-    getAllFeaturedItems().then((featuredItems) => {
+    getAllItems().then((items) => {
       getUserFavouritesIdByUserId(userId)
         .then((favouritesIds) => {
-          const types = typeList(featuredItems);
+          const types = typeList(items);
           let templateVars = {
             favouritesIds,
             user: username,
             types,
-            featuredItems,
+            items,
           };
           res.render("index", templateVars);
         })
