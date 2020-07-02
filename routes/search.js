@@ -132,6 +132,7 @@ module.exports = (db) => {
         const templateVar = { types, results, user: username, favouritesIds }
         res.render("search_result", templateVar);
         console.log(username);
+        console.log(favouritesIds);
         })
       })
 
