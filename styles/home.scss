@@ -58,12 +58,19 @@ body {
               display: inline-block;
               position: relative;
             }
-            i {
+            .fa-heart {
               position: absolute;
               top: 0;
               right: 0;
               padding: 0.2em;
               color: #b80f0f;
+            }
+            .fa-star {
+              position: absolute;
+              top: 0;
+              left: 0;
+              padding: 0.2em;
+              color: #ecda31;
             }
           }
           .info {

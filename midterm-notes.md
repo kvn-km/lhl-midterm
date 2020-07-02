@@ -251,6 +251,6 @@ timestamp
 
 ## Item page (item.js)
 
-- HTTP method: GET - URL pattern: /items/:id - USE: display the details of the item;
-- HTTP method: POST - URL pattern: /items/:id - USE: redirects to /messages;
-- HTTP method: POST - URL pattern: /items/:id/favourite- USE: alter the item in favourites database with item_id and user_id, redirect to /items/:id;
+- HTTP method: GET - URL pattern: /item/:id - USE: display the details of the item;
+- HTTP method: POST - URL pattern: /item/:id - USE: redirects to /messages;
+- HTTP method: POST - URL pattern: /item/:id/favourite- USE: alter the item in favourites database with item_id and user_id, redirect to /item/:id;
