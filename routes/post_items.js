@@ -34,7 +34,6 @@ const typeList = (db) => {
 }
 
 
-
 module.exports = (db) => {
   router.get("/new", (req, res) => {
 
@@ -57,12 +56,12 @@ module.exports = (db) => {
 
     addNewItem({...req.body, seller_id: userId})
       .then(item => {
-        console.log(userId);
-        res.send(item);
+        const itemId = item[0].id;
+        res.redirect(`/item/${itemId}`)
       })
       .catch(e => {
         console.error(e);
-        res.send(e)
+        res.status(500).send(e)
       });
   })
 
