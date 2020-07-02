@@ -1,7 +1,7 @@
 <article class="the-item">
 
   <div class="item-header" id="<%= item.id %>">
-    <h2><%= item.title %></h2>
+    <h2><%= item["title"] %></h2>
     <div class="item-pic">
       <img src="<%= item.photo %>" alt="<%= item.title %>">
     </div>
@@ -17,11 +17,47 @@
     </div>
   </div>
 
-  <div class="item-options">
 
-    <form class="item-buy" action="/item/<%= item.id %>/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">Purchase</button></form>
-    <form class="msg-seller" action="/messages/" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">Contact Seller</button></form>
+  <!-- OWNER/SELLER -->
+  <% if (item.seller_id === user.user_id) { %>
+  <!-- active -->
+  <% if (item.is_active) { %>
+  <form class="item-deactivate" action="/item/<%= item.id %>/deactivate" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
+      Make Unavailable from Sale
+    </button></form>
+  <% } else { %>
+  <form class="item-activate" action="/item/<%= item.id %>/activate" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
+      Make Available for Sale
+    </button></form>
+  <% } %>
+  <!-- messages -->
+  <form class="msg-seller" action="/messages/<%= item.id %>" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">
+      Messages
+    </button></form>
 
+  <!-- BUYER -->
+  <% } else { %>
+  <!-- favourite -->
+  <% if (favouritesIds.includes(item.id)) { %>
+  <form class="item-unfav" action="/item/<%= item.id %>/unfav" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
+      Remove from Favourites
+    </button></form>
+  <% } else { %>
+  <form class="item-fav" action="/item/<%= item.id %>/fav" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
+      Add to Favourites
+    </button></form>
+  <% } %>
+  <!-- purchase -->
+  <form class="item-buy" action="/item/<%= item.id %>/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
+      Purchase
+    </button></form>
+  <!-- message -->
+  <form class="msg-seller" action="/messages/<%= item.id %>" method="GET">
+    <button class="btn btn-outline-info btn-sm" type="submit">
+      Contact Seller
+    </button></form>
+
+  <% } %>
 
   </div>
 
