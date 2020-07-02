@@ -137,7 +137,7 @@
         <div class="row text-center">
           <% for(let item in sellerItems) { if(sellerItems[item].is_sold){ %>
           <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
-            <a href="/items/<%=sellerItems[item].id%>">
+            <a href="/item/<%=sellerItems[item].id%>">
               <img src="<%= sellerItems[item].photo  %>" />
             </a>
             <div class="info">
