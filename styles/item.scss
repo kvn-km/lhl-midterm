@@ -70,12 +70,9 @@ h1 {
   }
 }
 
-.more-items {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 3rem 0;
-}
-#more-items {
-  width: 7.5rem;
+.sold {
   text-align: center;
+  font-weight: bold;
+  color: red;
+  margin-bottom: 2rem;
 }

@@ -39,6 +39,10 @@ $(document).ready(() => {
     window.location.href = `/item/${itemID}/delete/`;
   });
 
+  $(".item-sold").submit(function() {
+    const itemID = $(".item-header").attr("id");
+    window.location.href = `/item/${itemID}/sold/`;
+  });
 
 
   // message

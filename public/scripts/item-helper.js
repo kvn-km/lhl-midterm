@@ -84,6 +84,17 @@ const buyItem = (db, item_id, user_id) => {
     .catch(error => { console.log("BUY ITEM Fail", error); });
 };
 
+
+const soldItem = (db, item_id, user_id) => {
+  unFavItem(db, item_id, user_id);
+  const query = {
+    text: `UPDATE items SET is_active = 'FALSE', is_sold = 'TRUE', is_featured = 'FALSE', seller_id = $1 WHERE id = $2 RETURNING *;`,
+    values: [user_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("BUY ITEM Fail", error); });
+};
+
 //
 // MESSAGES
 //
@@ -254,6 +265,7 @@ module.exports = {
   deactivateItem,
   favItem,
   buyItem,
+  soldItem,
   getMessagesWithSeller,
   sendMessagToSeller,
   getMessages,
