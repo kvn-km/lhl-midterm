@@ -84,9 +84,44 @@ const buyItem = (db, item_id, user_id) => {
     .catch(error => { console.log("BUY ITEM Fail", error); });
 };
 
+//
+// MESSAGES
+//
+
+const getMessagesWithSeller = (db, contacts, item_id) => {
+  const query = {
+    text: `SELECT message FROM messages WHERE sender_id = $1 AND receiver_id = $2 AND item_id = $3;`,
+    values: [contacts.user_id, contacts.seller_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES GET Fail", error); });
+};
+
+const getMessages = (db, contacts, item_id) => {
+  const query = {
+    text: `SELECT * FROM messages WHERE item_id = $3 AND ((sender_id = $1 AND receiver_id = $2) OR (sender_id = $2 AND receiver_id = $1)) ORDER BY id ASC;`,
+    values: [contacts.user_id, contacts.seller_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES GET Fail", error); });
+};
+
+const sendMessagToSeller = (db, contacts, item_id, message) => {
+  const query = {
+    text: `INSERT INTO messages(item_id, sender_id, receiver_id, message, timestamp)
+      VALUES ($1, $2, $3, $4, NOW()) RETURNING *;`,
+    values: [item_id, contacts.user_id, contacts.seller_id, message]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES SEND Fail", error); });
+};
+
+
+
+
 const createVarsMulti = (db, cookies, req) => {
-  const user_id = req.session.user_id;
-  const item_id = req.params.item_id;
+  // const user_id = req.session.user_id;
+  // const item_id = req.params.item_id;
   let theItem = [];
   let myFavouritesIds = [];
   let theTypes = [];
@@ -190,6 +225,14 @@ module.exports = {
   deactivateItem,
   favItem,
   buyItem,
+  getMessagesWithSeller,
+  sendMessagToSeller,
+  getMessages,
+  // createMessage,
+  // renderConvo,
+
+
+
   createVarsMulti,
   createVarsSingle
 };

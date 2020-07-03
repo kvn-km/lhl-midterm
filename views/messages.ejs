@@ -20,12 +20,23 @@
   <!-- scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="/scripts/messages-client.js"></script>
+  <script type="text/javascript" src="/scripts/item-helper.js"></script>
   <script type="text/javascript" src="/scripts/messages-helperFunctions.js"></script>
 
   <title>Messages</title>
 </head>
 
 <body>
+  <span id='variablesMsg' hidden>
+    <%- JSON.stringify(messages);  %>
+  </span>
+  <span id='variablesContacts' hidden>
+    <%- JSON.stringify(contacts);  %>
+  </span>
+  <span id='variablesItem' hidden>
+    <%- JSON.stringify(item);  %>
+  </span>
+
   <%- include('partials/_navData') %>
   <main id="container">
     <section id="all_messages">
@@ -42,6 +53,7 @@
       </form>
     </section>
   </main>
+
   <!-- dual jquery bug, removing second instance -->
   <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
