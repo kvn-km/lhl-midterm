@@ -1,0 +1,10 @@
+article {
+  border: 0;
+  border-color: red;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .item-info-container {
+  }
+}

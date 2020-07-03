@@ -49,6 +49,9 @@ const searchItems = function(options) {
     queryString += `${queryParams.length === 1 ? ' WHERE' : ' AND'} price <= $${queryParams.length}`;
   }
 
+  queryString += `
+  ORDER BY price`;
+
   query["text"] = queryString;
   query["values"] = queryParams;
   console.log(queryString);

@@ -62,6 +62,24 @@ module.exports = (db) => {
       });
   });
 
+  // sold item
+  router.post("/:item_id/sold", (req, res) => {
+    console.log("user_id:", req.session.user_id);
+    console.log("username:", req.session.username);
+    const cookies = { username: req.session.username, user_id: req.session.user_id };
+    const user_id = req.session.user_id;
+    const item_id = req.params.item_id;
+    let templateVars = {};
+    help.soldItem(db, item_id, user_id)
+      .then(() => {
+        help.createVarsMulti(db, cookies, req)
+          .then((data2) => {
+            templateVars = data2;
+            res.redirect("../../user");
+          });
+      });
+  });
+
   // favourite
   router.post("/:item_id/unfav", (req, res) => {
     console.log("user_id:", req.session.user_id);
@@ -197,8 +215,20 @@ module.exports = (db) => {
       });
   });
 
+  const deleteItemById = (itemId) => {
+    return db.query(
+      `DELETE FROM items
+            WHERE items.id= $1;`,
+      [itemId]
+    );
+  };
 
-
+  router.post("/:id/delete", (req, res) => {
+    const userId = req.session["user_id"];
+    const username = req.session["username"];
+    const itemId = req.params.id;
+    deleteItemById(itemId).then(() => res.redirect(`/user`));
+  });
 
 
 

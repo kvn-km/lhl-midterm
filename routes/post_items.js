@@ -1,6 +1,4 @@
 const express = require('express');
-const { database } = require('pg/lib/defaults');
-const poolFactory = require('pg/lib/pool-factory');
 const router  = express.Router();
 // PG database client/connection setup
 const { Pool } = require('pg');

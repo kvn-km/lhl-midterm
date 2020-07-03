@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  background-color: #fffcf2;
 
   main {
     display: flex;
@@ -25,9 +25,23 @@ body {
       flex-direction: row-reverse;
     }
 
+    .results-label {
+      display: flex;
+      justify-content: center;
+      padding: 1.5em;
+      color:#695d52;
+
+    }
+    .error {
+      display: flex;
+      justify-content: center;
+
+    }
+
     .results {
       display: flex;
       justify-content: center;
+      color:#695d52;
     }
 
     .search-result {
@@ -49,6 +63,11 @@ body {
           position: absolute;
           right: 1.5em;
           font-size: 0.7em;
+        }
+
+        .sold {
+          color: red;
+          font-weight: 500;
         }
       }
 

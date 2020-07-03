@@ -84,9 +84,64 @@ const buyItem = (db, item_id, user_id) => {
     .catch(error => { console.log("BUY ITEM Fail", error); });
 };
 
+
+const soldItem = (db, item_id, user_id) => {
+  unFavItem(db, item_id, user_id);
+  const query = {
+    text: `UPDATE items SET is_active = 'FALSE', is_sold = 'TRUE', is_featured = 'FALSE', seller_id = $1 WHERE id = $2 RETURNING *;`,
+    values: [user_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("BUY ITEM Fail", error); });
+};
+
+//
+// MESSAGES
+//
+
+const getConvos = (db, user_id) => {
+  const query = {
+    text: `SELECT * FROM messages WHERE seller_id = $1;`,
+    values: [user_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES GET Fail", error); });
+};
+
+const getMessagesWithSeller = (db, contacts, item_id) => {
+  const query = {
+    text: `SELECT message FROM messages WHERE sender_id = $1 AND receiver_id = $2 AND item_id = $3;`,
+    values: [contacts.user_id, contacts.seller_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES GET Fail", error); });
+};
+
+const getMessages = (db, contacts, item_id) => {
+  const query = {
+    text: `SELECT * FROM messages WHERE item_id = $3 AND ((sender_id = $1 AND receiver_id = $2) OR (sender_id = $2 AND receiver_id = $1)) ORDER BY id ASC;`,
+    values: [contacts.user_id, contacts.seller_id, item_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES GET Fail", error); });
+};
+
+const sendMessagToSeller = (db, contacts, item_id, message) => {
+  const query = {
+    text: `INSERT INTO messages(item_id, sender_id, receiver_id, message, timestamp)
+      VALUES ($1, $2, $3, $4, NOW()) RETURNING *;`,
+    values: [item_id, contacts.user_id, contacts.seller_id, message]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES SEND Fail", error); });
+};
+
+
+
+
 const createVarsMulti = (db, cookies, req) => {
-  const user_id = req.session.user_id;
-  const item_id = req.params.item_id;
+  // const user_id = req.session.user_id;
+  // const item_id = req.params.item_id;
   let theItem = [];
   let myFavouritesIds = [];
   let theTypes = [];
@@ -174,6 +229,26 @@ const createVarsSingle = (db, cookies, req) => {
         });
     });
 };
+const createVarsMSG = (db, contacts, req) => {
+  const user_id = req.session.user_id;
+  const item_id = req.params.item_id;
+  let theItem = [];
+  let templateVars = {};
+  return fetchItemFromID(db, item_id)
+    .then((data1) => {
+      theItem.push(data1.rows[0]);
+      getMessages(db, contacts, item_id)
+        .then((messages) => {
+          const theMessages = messages.rows;
+          templateVars = {
+            user: cookies,
+            item: theItem[0],
+            messages: theMessages
+          };
+          return templateVars;
+        });
+    });
+};
 
 
 
@@ -190,6 +265,12 @@ module.exports = {
   deactivateItem,
   favItem,
   buyItem,
+  soldItem,
+  getMessagesWithSeller,
+  sendMessagToSeller,
+  getMessages,
+  getConvos,
   createVarsMulti,
-  createVarsSingle
+  createVarsSingle,
+  createVarsMSG
 };

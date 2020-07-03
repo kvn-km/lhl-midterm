@@ -12,7 +12,7 @@ VALUES ('jessicaSeo'),
        ('joshPorter'),
        ('andyBernard'),
        ('jimHalpert'),
-       ('pamBeasley'),
+       ('pamBeesly'),
        ('oscarMartinez'),
        ('kevinMalone'),
        ('michaelScott');
