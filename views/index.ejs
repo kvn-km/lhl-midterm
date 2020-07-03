@@ -38,25 +38,26 @@
           <p><%= types[type] %></p>
         </div>
         <div class="row text-center type">
-          <% for(let featuredItem in featuredItems ) {
-          if(featuredItems[featuredItem].type === types[type] ){%>
+          <% for(let item in items ) { if( items[item].type === types[type] &&
+          items[item].is_featured){%>
           <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
             <div class="img_wrp">
-              <a href="/item/<%=featuredItems[featuredItem].id%>">
-                <img src="<%= featuredItems[featuredItem].photo  %>" />
+              <a href="/item/<%=items[item].id%>">
+                <img src="<%= items[item].photo  %>" />
               </a>
-              <% if(favouritesIds.includes(featuredItems[featuredItem].id)){ %>
+              <i class="fa fa-star fa-2x"></i>
+              <% if(favouritesIds.includes(items[item].id)){ %>
               <i class="fa fa-heart fa-2x"></i>
               <% }%>
             </div>
             <div class="info">
               <div id="title">
-                <p><%= featuredItems[featuredItem].title %></p>
+                <p><%= items[item].title %></p>
               </div>
               <div class="bottom-line">
                 <div id="price">
-                  <% if(!featuredItems[featuredItem].is_sold){ %>
-                  <p>CA$<%= featuredItems[featuredItem].price %></p>
+                  <% if(!items[item].is_sold){ %>
+                  <p>CA$<%= items[item].price %></p>
                   <% }else{ %>
                   <p>Sold</p>
                   <% }%>
@@ -64,7 +65,33 @@
               </div>
             </div>
           </div>
-          <% } } %>
+          <%} }%> <% for(let item in items ) { if( items[item].type ===
+          types[type] && !items[item].is_featured){%>
+          <div class="col-12 col-sm-6 col-md-3 col-lg-2 item-container">
+            <div class="img_wrp">
+              <a href="/item/<%=items[item].id%>">
+                <img src="<%= items[item].photo  %>" />
+              </a>
+              <% if(favouritesIds.includes(items[item].id)){ %>
+              <i class="fa fa-heart fa-2x"></i>
+              <% }%>
+            </div>
+            <div class="info">
+              <div id="title">
+                <p><%= items[item].title %></p>
+              </div>
+              <div class="bottom-line">
+                <div id="price">
+                  <% if(!items[item].is_sold){ %>
+                  <p>CA$<%= items[item].price %></p>
+                  <% }else{ %>
+                  <p>Sold</p>
+                  <% }%>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%} }%>
         </div>
       </div>
       <% } %>
