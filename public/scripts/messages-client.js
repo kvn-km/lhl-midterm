@@ -4,13 +4,12 @@ $(document).ready(() => {
   console.log("Yo. MSG Doc's Ready!");
 
   // works
-  const theMSGVar = JSON.parse($('#variablesMsg').text());
-  const theContactsVar = JSON.parse($('#variablesContacts').text());
-  const theItemVar = JSON.parse($('#variablesItem').text());
-  $('#variableContacts').remove();
-  $('#variableMsg').remove();
-  $('#variableItem').remove();
-
+  const theMSGVar = JSON.parse($("#variablesMsg").text());
+  const theContactsVar = JSON.parse($("#variablesContacts").text());
+  const theItemVar = JSON.parse($("#variablesItem").text());
+  $("#variableContacts").remove();
+  $("#variableMsg").remove();
+  $("#variableItem").remove();
 
   //works
   const createMessage = (message) => {
@@ -31,36 +30,26 @@ $(document).ready(() => {
     }
   };
 
-
-
-
-
-  $("#send_message").submit(function() {
+  $("#send_message").submit(function () {
     event.preventDefault();
     const contacts = {
-      "seller_id": theContactsVar.seller_id,
-      "user_id": theContactsVar.user_id
+      seller_id: theContactsVar.seller_id,
+      user_id: theContactsVar.user_id,
     };
     let morevariables = {
-      item_id: theItemVar.id, message: $("#message").val(), contacts: contacts
+      item_id: theItemVar.id,
+      message: $("#message").val(),
+      contacts: contacts,
     };
-    return $.post(`/messages/${theItemVar.id}`, { morevariables })
-      .then((messages) => {
+    return $.post(`/messages/${theItemVar.id}`, { morevariables }).then(
+      (messages) => {
         $("#message").val("");
         $("#all_tweets").empty();
         renderConvo(messages.rows);
-      });
+      }
+    );
   });
-
-
-
-
-
-
-
-
 
   // works
   renderConvo(theMSGVar);
-
 });
