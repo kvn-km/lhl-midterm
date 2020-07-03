@@ -38,6 +38,7 @@
 
   <!-- BUYER -->
   <% } else { %>
+  <% if (!item.is_sold) { %>
   <!-- favourite -->
   <% if (favouritesIds.includes(item.id)) { %>
   <form class="item-unfav" action="/item/<%= item.id %>/unfav" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
@@ -53,10 +54,14 @@
   <button onclick="location.href='mailto:<%= email.email %>';" class="btn btn-outline-info btn-sm" type="submit">
     Contact Seller
   </button>
+  <% } else { %>
+
+  <div class="sold">
+    SOLD
+  </div>
 
   <% } %>
-
-
+  <% } %>
 
   </div>
 
