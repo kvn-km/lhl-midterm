@@ -13,7 +13,25 @@ body {
     background-image: url("/images/header.png");
     background-repeat: no-repeat;
     background-size: cover;
-    color: #fffcf2;
+
+    #title-container {
+      background-color: #e0be5e;
+      opacity: 0.6;
+      display: inline-block;
+      position: relative;
+      width: 60vw;
+      height: 12vw;
+    }
+    h1 {
+      font-family: "Euphoria Script", cursive;
+      font-size: 8vw;
+      color: #fcf6e3;
+      font-weight: 600;
+      position: absolute;
+      margin: auto;
+      opacity: 0.85;
+      margin: auto;
+    }
   }
   main {
     display: flex;
