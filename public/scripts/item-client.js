@@ -34,12 +34,18 @@ $(document).ready(() => {
     window.location.href = `/item/${itemID}/deactivate/`;
   });
 
-  // message
-  $(".msg-seller").submit(function() {
+  $(".item-delete").submit(function() {
     const itemID = $(".item-header").attr("id");
-    window.location.href = `/item/${itemID}/messages/`;
+    window.location.href = `/item/${itemID}/delete/`;
   });
 
+
+
+  // message
+  // $(".msg-seller").submit(function() {
+  //   const itemID = $(".item-header").attr("id");
+  //   window.location.href = `/item/${itemID}/messages/`;
+  // });
 
 
 

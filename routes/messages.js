@@ -27,22 +27,16 @@ module.exports = (db) => {
     console.log("username:", req.session.username);
     const cookies = { username: req.session.username, user_id: req.session.user_id };
     let templateVars = {};
-    help.createVarsSingle(db, cookies, req)
-      .then((data) => {
-        templateVars = data;
-        const contacts = {
-          "seller_id": null,
-          "user_id": req.session.user_id
-        };
-        templateVars["contacts"] = contacts;
-        const getConvos = (db, user_id) => {
-          const query = {
-            text: `SELECT * FROM messages WHERE receiver_id = $1 OR sender_id = $1;`,
-            values: [user_id]
+    help.getConvos(db, cookies.user_id)
+      .then((convos) => {
+        templateVars["convos"] = convos.rows;
+        help.createVarsMSG(db, cookies, req)
+          .then((data) => {
+            templateVars["variables"] = data;
+
+            return db.query(query)
+              .catch(error => { console.log("MESSAGES GET Fail", error); });
           };
-          return db.query(query)
-            .catch(error => { console.log("MESSAGES GET Fail", error); });
-        };
 
         getConvos(db, cookies.user_id)
           .then(messages => {

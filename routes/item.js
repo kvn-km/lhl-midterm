@@ -197,8 +197,20 @@ module.exports = (db) => {
       });
   });
 
+  const deleteItemById = (itemId) => {
+    return db.query(
+      `DELETE FROM items
+            WHERE items.id= $1;`,
+      [itemId]
+    );
+  };
 
-
+  router.post("/:id/delete", (req, res) => {
+    const userId = req.session["user_id"];
+    const username = req.session["username"];
+    const itemId = req.params.id;
+    deleteItemById(itemId).then(() => res.redirect(`/user`));
+  });
 
 
 

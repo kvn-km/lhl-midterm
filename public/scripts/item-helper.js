@@ -88,14 +88,14 @@ const buyItem = (db, item_id, user_id) => {
 // MESSAGES
 //
 
-// const getConvos = (db, user_id) => {
-//   const query = {
-//     text: `SELECT * FROM messages WHERE seller_id = $1;`,
-//     values: [user_id]
-//   };
-//   return db.query(query)
-//     .catch(error => { console.log("MESSAGES GET Fail", error); });
-// };
+const getConvos = (db, user_id) => {
+  const query = {
+    text: `SELECT * FROM messages WHERE seller_id = $1;`,
+    values: [user_id]
+  };
+  return db.query(query)
+    .catch(error => { console.log("MESSAGES GET Fail", error); });
+};
 
 const getMessagesWithSeller = (db, contacts, item_id) => {
   const query = {
@@ -218,6 +218,26 @@ const createVarsSingle = (db, cookies, req) => {
         });
     });
 };
+const createVarsMSG = (db, contacts, req) => {
+  const user_id = req.session.user_id;
+  const item_id = req.params.item_id;
+  let theItem = [];
+  let templateVars = {};
+  return fetchItemFromID(db, item_id)
+    .then((data1) => {
+      theItem.push(data1.rows[0]);
+      getMessages(db, contacts, item_id)
+        .then((messages) => {
+          const theMessages = messages.rows;
+          templateVars = {
+            user: cookies,
+            item: theItem[0],
+            messages: theMessages
+          };
+          return templateVars;
+        });
+    });
+};
 
 
 
@@ -237,11 +257,8 @@ module.exports = {
   getMessagesWithSeller,
   sendMessagToSeller,
   getMessages,
-  // createMessage,
-  // renderConvo,
-
-
-
+  getConvos,
   createVarsMulti,
-  createVarsSingle
+  createVarsSingle,
+  createVarsMSG
 };

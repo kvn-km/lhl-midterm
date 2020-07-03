@@ -46,6 +46,8 @@ $(document).ready(() => {
     };
     return $.post(`/messages/${theItemVar.id}`, { morevariables })
       .then((messages) => {
+        $("#message").val("");
+        $("#all_tweets").empty();
         renderConvo(messages.rows);
       });
   });

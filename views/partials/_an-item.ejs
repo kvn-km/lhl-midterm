@@ -23,17 +23,18 @@
   <!-- active -->
   <% if (item.is_active) { %>
   <form class="item-deactivate" action="/item/<%= item.id %>/deactivate" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
-      Make Unavailable from Sale
+      Mark as Sold
     </button></form>
   <% } else { %>
   <form class="item-activate" action="/item/<%= item.id %>/activate" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
-      Make Available for Sale
+      Mark as For Sale
     </button></form>
   <% } %>
-  <!-- messages -->
-  <form class="msg-seller" action="/messages/<%= item.id %>" method="GET"><button class="btn btn-outline-info btn-sm" type="submit">
-      Messages
+
+  <form class="item-delete" action="/item/<%=item.id%>/delete" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
+      Remove Item
     </button></form>
+
 
   <!-- BUYER -->
   <% } else { %>
@@ -47,17 +48,15 @@
       Add to Favourites
     </button></form>
   <% } %>
-  <!-- purchase -->
-  <form class="item-buy" action="/item/<%= item.id %>/buy" method="POST"><button class="btn btn-outline-success btn-sm" type="submit">
-      Purchase
-    </button></form>
   <!-- message -->
-  <form class="msg-seller" action="/messages/<%= item.id %>" method="GET">
-    <button class="btn btn-outline-info btn-sm" type="submit">
-      Contact Seller
-    </button></form>
+
+  <button onclick="location.href='mailto:hello@email.com';" class="btn btn-outline-info btn-sm" type="submit">
+    Contact Seller
+  </button>
 
   <% } %>
+
+
 
   </div>
 

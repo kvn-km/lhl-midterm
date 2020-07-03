@@ -12,48 +12,45 @@
 
   <link rel="stylesheet" href="/styles/layout.css" type="text/css">
   <link rel="stylesheet" href="/styles/nav.css" type="text/css">
-  <link rel="stylesheet" href="/styles/myMessages.css" type="text/css">
+  <link rel="stylesheet" href="/styles/messages.css" type="text/css">
 
   <!-- fav icons missing bug fix -->
   <link rel="shortcut icon" href="#" />
 
   <!-- scripts -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!-- <script type="text/javascript" src="/scripts/messages-client.js"></script>
+  <script type="text/javascript" src="/scripts/messages-client.js"></script>
   <script type="text/javascript" src="/scripts/item-helper.js"></script>
-  <script type="text/javascript" src="/scripts/messages-helperFunctions.js"></script> -->
+  <script type="text/javascript" src="/scripts/messages-helperFunctions.js"></script>
 
-  <title>My Messages</title>
+  <title>Messages</title>
 </head>
 
 <body>
+  <span id='variablesMsg' hidden>
+    <%- JSON.stringify(messages);  %>
+  </span>
+  <span id='variablesContacts' hidden>
+    <%- JSON.stringify(contacts);  %>
+  </span>
+  <span id='variablesItem' hidden>
+    <%- JSON.stringify(item);  %>
+  </span>
 
-
-
+  <%- include('partials/_navData') %>
   <main id="container">
     <section id="all_messages">
       <!-- msgs populate here -->
-
-
-      <article>
-        <div class="item-info-container">
-          <div>
-            IMG OF PRODUCT
-          </div>
-          <div class="product">
-            NAME OF PRODUCT
+    </section>
+    <section id="form_area">
+      <form id="send_message" action="/messages/" method="POST" autocomplete="off">
+        <div class="input-group mb-3">
+          <input id="message" name="message" type="text" class="form-control" placeholder="Your message here" aria-label="Your message here" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="submit">Send</button>
           </div>
         </div>
-        <div>
-          <div class="convo-with">
-            MSG WITH PERSON
-          </div>
-        </div>
-      </article>
-
-
-
-
+      </form>
     </section>
   </main>
 
