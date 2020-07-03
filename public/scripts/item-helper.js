@@ -43,16 +43,6 @@ const fetchItemTypes = (db) => {
   return db.query(query)
     .catch(error => { console.log("FETCH ITEM TYPES Fail", error); });
 };
-const fetchSellerEmail = (db, item_id) => {
-  const query = {
-    text: `SELECT email FROM users JOIN items ON users.id = items.seller_id WHERE items.id = ${item_id};`,
-  };
-  return db.query(query)
-    .catch(error => { console.log("FETCH ITEM TYPES Fail", error); });
-};
-
-
-
 
 const unFavItem = (db, item_id, user_id) => {
   const query = {
@@ -200,7 +190,6 @@ const createVarsSingle = (db, cookies, req) => {
   let myFavouritesIds = [];
   let theTypes = [];
   let myFeaturedItems = [];
-  let sellerEmail = "";
   let templateVars = {};
   return fetchItemFromID(db, item_id)
     .then((data1) => {
@@ -221,26 +210,20 @@ const createVarsSingle = (db, cookies, req) => {
                   for (let row of data4.rows) {
                     myFeaturedItems.push(row);
                   }
-                  return fetchSellerEmail(db, item_id)
-                    .then((email) => {
-                      sellerEmail = email.rows[0];
-                      templateVars["email"] = sellerEmail;
-                    })
-                    .then((data5) => {
-                      //
-                      // create variable
-                      //
-                      templateVars = {
-                        email: sellerEmail,
-                        anItem: true,
-                        user: cookies,
-                        item: theItem[0],
-                        types: theTypes,
-                        favouritesIds: myFavouritesIds,
-                        featuredItems: myFeaturedItems
-                      };
-                      return templateVars;
-                    });
+                })
+                .then((data5) => {
+                  //
+                  // create variable
+                  //
+                  templateVars = {
+                    anItem: true,
+                    user: cookies,
+                    item: theItem[0],
+                    types: theTypes,
+                    favouritesIds: myFavouritesIds,
+                    featuredItems: myFeaturedItems
+                  };
+                  return templateVars;
                 });
             });
         });
@@ -277,7 +260,6 @@ module.exports = {
   fetchUserFavItems,
   fetchItemFromID,
   fetchItemTypes,
-  fetchSellerEmail,
   unFavItem,
   activateItem,
   deactivateItem,
