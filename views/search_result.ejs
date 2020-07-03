@@ -9,7 +9,7 @@
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   />
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-    <title>My Flea Market</title>
+    <title>My Flea Market | Search</title>
   </head>
   <body>
     <%- include('partials/_nav')%>
@@ -20,6 +20,9 @@
     </div>
     <div class="results">
     <div class="search-result">
+      <% if (results.length === 0) { %>
+        <div class="error">Oh oh :-( Please search again!</div>
+      <% } else { %>
       <% for(let result of results) { %>
       <article onclick="location.href='/item/<%= result.id%>';">
         <div class="image">
@@ -41,6 +44,7 @@
           <% } %>
       </article>
       <% } %>
+      <% }%>
     </div>
     </div>
   </main>

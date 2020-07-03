@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
+  background-color: #fffcf2;
 
   main {
     display: flex;
@@ -32,10 +32,16 @@ body {
       color:#695d52;
 
     }
+    .error {
+      display: flex;
+      justify-content: center;
+
+    }
 
     .results {
       display: flex;
       justify-content: center;
+      color:#695d52;
     }
 
     .search-result {

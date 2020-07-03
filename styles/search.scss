@@ -1,6 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
+  background-color: #fffcf2;
 
   header {
     display: flex;
@@ -26,7 +27,7 @@ body {
     .container-fluid {
       display: block;
       background-color: #fcf6e3;
-      width: 90vw;
+      width: 80vw;
       padding: 2em;
       margin-top: 1em;
       margin-bottom: 1em;
