@@ -239,7 +239,6 @@ const createVarsSingle = (db, cookies, req) => {
                         favouritesIds: myFavouritesIds,
                         featuredItems: myFeaturedItems
                       };
-                      console.log(",.,.,. email:", templateVars.email);
                       return templateVars;
                     });
                 });
