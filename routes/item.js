@@ -208,10 +208,17 @@ module.exports = (db) => {
     const user_id = req.session.user_id;
     const item_id = req.params.item_id;
     let templateVars = {};
+
+    help.fetchSellerEmail(db, item_id)
+      .then((email) => {
+
+      });
+
+
     help.createVarsMulti(db, cookies, req)
       .then((data2) => {
         templateVars = data2;
-        res.redirect("../../messages");
+        res.render("item", templateVars);
       });
   });
 
