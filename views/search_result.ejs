@@ -15,17 +15,23 @@
     <%- include('partials/_nav')%>
     <main>
     <%- include('partials/_searchbox')%>
+    <div class="results-label">
+      <h3>Search Results</h3>
+    </div>
     <div class="results">
     <div class="search-result">
       <% for(let result of results) { %>
       <article onclick="location.href='/item/<%= result.id%>';">
-
         <div class="image">
         <img src= "<%= result.photo %>">
         </div>
         <div class="product">
           <lable for="title"><%= result.title %></lable>
-          <p>$<%= result.price %></p>
+          <% if(!result.is_sold){ %>
+            <p>$<%= result.price %></p>
+            <% }else{ %>
+            <p class="sold">Sold</p>
+            <% }%>
         </div>
         <% if(favouritesIds.includes(result.id)){
           %>

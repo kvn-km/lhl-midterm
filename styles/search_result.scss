@@ -25,6 +25,14 @@ body {
       flex-direction: row-reverse;
     }
 
+    .results-label {
+      display: flex;
+      justify-content: center;
+      padding: 1.5em;
+      color:#695d52;
+
+    }
+
     .results {
       display: flex;
       justify-content: center;
@@ -49,6 +57,11 @@ body {
           position: absolute;
           right: 1.5em;
           font-size: 0.7em;
+        }
+
+        .sold {
+          color: red;
+          font-weight: 500;
         }
       }
 
