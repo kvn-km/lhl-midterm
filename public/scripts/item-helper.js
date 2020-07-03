@@ -88,6 +88,15 @@ const buyItem = (db, item_id, user_id) => {
 // MESSAGES
 //
 
+// const getConvos = (db, user_id) => {
+//   const query = {
+//     text: `SELECT * FROM messages WHERE seller_id = $1;`,
+//     values: [user_id]
+//   };
+//   return db.query(query)
+//     .catch(error => { console.log("MESSAGES GET Fail", error); });
+// };
+
 const getMessagesWithSeller = (db, contacts, item_id) => {
   const query = {
     text: `SELECT message FROM messages WHERE sender_id = $1 AND receiver_id = $2 AND item_id = $3;`,

@@ -31,16 +31,24 @@ module.exports = (db) => {
       .then((data) => {
         templateVars = data;
         const contacts = {
-          "seller_id": templateVars.item.seller_id,
+          "seller_id": null,
           "user_id": req.session.user_id
         };
         templateVars["contacts"] = contacts;
-        getMessages(db, contacts, templateVars.item.id)
+        const getConvos = (db, user_id) => {
+          const query = {
+            text: `SELECT * FROM messages WHERE receiver_id = $1 OR sender_id = $1;`,
+            values: [user_id]
+          };
+          return db.query(query)
+            .catch(error => { console.log("MESSAGES GET Fail", error); });
+        };
+
+        getConvos(db, cookies.user_id)
           .then(messages => {
-            let jsonMSG = JSON.stringify(messages.rows);
-            let jsonPMSG = JSON.parse(jsonMSG);
-            templateVars["messages"] = jsonPMSG;
-            res.render("messages", templateVars);
+            templateVars["messages"] = messages.row;
+            console.log("<><><><><><><><><><>\n", templateVars);
+            res.render("myMessages");
           });
       });
   });
@@ -130,3 +138,15 @@ module.exports = (db) => {
 
   return router;
 };
+
+
+// <% - include('partials/_navData') %>
+// <span id='variablesMsg' hidden>
+//   <%- JSON.stringify(messages);  %>
+//   </span>
+//   <span id='variablesContacts' hidden>
+//     <%- JSON.stringify(contacts);  %>
+//   </span>
+//   <span id='variablesItem' hidden>
+//     <%- JSON.stringify(item);  %>
+//   </span>
