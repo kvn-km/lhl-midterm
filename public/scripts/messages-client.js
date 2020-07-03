@@ -35,7 +35,7 @@ $(document).ready(() => {
 
 
 
-  $(".item-messages").submit(function() {
+  $("#send_message").submit(function() {
     event.preventDefault();
     const contacts = {
       "seller_id": theContactsVar.seller_id,
@@ -44,25 +44,13 @@ $(document).ready(() => {
     let morevariables = {
       item_id: theItemVar.id, message: $("#message").val(), contacts: contacts
     };
-    return $.post(`/${theItemVar.id}/messages`, { morevariables });
-
+    return $.post(`/messages/${theItemVar.id}`, { morevariables })
+      .then((messages) => {
+        $("#message").val("");
+        $("#all_tweets").empty();
+        renderConvo(messages.rows);
+      });
   });
-  // $("#send_message").submit(function() {
-  //   event.preventDefault();
-  //   const contacts = {
-  //     "seller_id": theContactsVar.seller_id,
-  //     "user_id": theContactsVar.user_id
-  //   };
-  //   let morevariables = {
-  //     item_id: theItemVar.id, message: $("#message").val(), contacts: contacts
-  //   };
-  //   return $.post(`/messages/${theItemVar.id}`, { morevariables })
-  //     .then((messages) => {
-  //       $("#message").val("");
-  //       $("#all_tweets").empty();
-  //       renderConvo(messages.rows);
-  //     });
-  // });
 
 
 
