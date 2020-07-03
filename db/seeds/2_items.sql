@@ -7,7 +7,7 @@ VALUES (1,'https://i.ibb.co/DkFCHGQ/bed-frame.jpg', 199, 'White Bed With Drawers
        (2,'/images/chair-outdoor.jpg', 49, 'Outdoor Patio Chair', 'A nice patio chair', 'chairs', TRUE, FALSE, FALSE),
        (2,'/images/chair-sofa.jpg', 149, 'Blue Loveseat Sofa', 'A soft blue sofa. Perfect for a small condo', 'sofas', TRUE, FALSE, FALSE),
        (2,'/images/chair.jpg', 399, 'Orange Velvet Chair', 'A mid-century modern single chair with soft orange velvet fabric', 'chairs', TRUE, FALSE, TRUE),
-       (3,'https://i.ibb.co/whS23rV/chair.jpg', 149, 'Office Desk', 'A solid wood desk. Pefect for your home office!', 'desks', TRUE, FALSE, FALSE),
+       (3,'https://i.ibb.co/s9R62Gd/desk.jpg', 149, 'Office Desk', 'A solid wood desk. Pefect for your home office!', 'desks', TRUE, FALSE, FALSE),
        (3,'/images/dresser.jpg', 99, 'Colorful chest dresser', 'A colorful dresser for your kid!', 'storage', TRUE, FALSE, TRUE),
        (3,'https://i.ibb.co/6PNpj1Q/table-coffee.jpg', 89, 'Sleek Coffee Table', 'A modern coffee table with wood top', 'tables', TRUE, FALSE, FALSE),
        (4,'https://i.ibb.co/v1RdnSg/table-dining.jpg', 499, 'Classy Dining Table', 'A classy dining table', 'tables', TRUE, FALSE, FALSE),
